@@ -34,7 +34,7 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = PanelApp.class
 )
-public class ContentTargetingPanelApp extends BasePanelApp {
+public class PokedexPanelApp extends BasePanelApp {
 
 	@Override
 	public String getPortletId() {
