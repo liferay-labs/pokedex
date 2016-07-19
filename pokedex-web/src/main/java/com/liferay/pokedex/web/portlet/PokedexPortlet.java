@@ -14,14 +14,21 @@
 
 package com.liferay.pokedex.web.portlet;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
-
 import javax.portlet.Portlet;
+import javax.portlet.PortletException;
+import javax.portlet.PortletURL;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
 
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.portlet.bridge.soy.SoyPortlet;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+
+import java.io.IOException;
+import java.util.Objects;
 
 /**
  * @author Julio Camarero
@@ -40,15 +47,13 @@ import org.osgi.service.component.annotations.Reference;
 		"javax.portlet.display-name=Pokedex",
 		"javax.portlet.expiration-cache=0",
 		"javax.portlet.init-param.copy-request-parameters=true",
+		"javax.portlet.init-param.template-path=/",
+		"javax.portlet.init-param.view-template=pokedex_view",
 		"javax.portlet.name=" + PokedexPortletKeys.POKEDEX,
 		"javax.portlet.security-role-ref=administrator,guest,power-user,user",
 		"javax.portlet.supports.mime-type=text/html"
 	},
 	service = {PokedexPortlet.class, Portlet.class}
 )
-public class PokedexPortlet extends MVCPortlet {
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		PokedexPortlet.class);
-
+public class PokedexPortlet extends SoyPortlet {
 }
