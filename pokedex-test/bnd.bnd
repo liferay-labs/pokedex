@@ -1,0 +1,11 @@
+Bundle-Name: Liferay Pokedex Test
+Bundle-SymbolicName: com.liferay.pokedex.test
+Bundle-Version: 1.0.0
+Import-Package:\
+	!com.liferay.util.xml,\
+	\
+	!org.junit.experimental.theories,\
+	*
+Include-Resource: test-classes/integration
+Liferay-Releng-Module-Group-Description:
+Liferay-Releng-Module-Group-Title: Pokedex
