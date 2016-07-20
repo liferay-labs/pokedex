@@ -94,6 +94,8 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 				"frontShinyImageURL", pokemon.getFrontShinyImageURL());
 			soyPokemon.put("backImageURL", pokemon.getBackImageURL());
 			soyPokemon.put("backShinyImageURL", pokemon.getBackShinyImageURL());
+
+			soyPokemons.add(pokemon);
 		}
 
 		return soyPokemons;
