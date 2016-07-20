@@ -5,6 +5,7 @@ import Dropdown from 'metal-dropdown/src/Dropdown';
 import Tooltip from 'metal-tooltip/src/Tooltip';
 
 import templates from './PokedexView.soy';
+import pokemonViewTemplates from './PokemonView.soy';
 
 class PokedexView extends Component {
 	/**
