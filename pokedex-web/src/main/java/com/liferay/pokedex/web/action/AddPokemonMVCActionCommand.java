@@ -54,11 +54,22 @@ public class AddPokemonMVCActionCommand extends BaseMVCActionCommand {
 		String type = ParamUtil.getString(actionRequest, "type");
 		long order = ParamUtil.getLong(actionRequest, "order");
 
+		String frontImageURL = ParamUtil.getString(
+			actionRequest, "frontImageURL");
+		String frontShinyImageURL = ParamUtil.getString(
+			actionRequest, "frontShinyImageURL");
+		String backImageURL = ParamUtil.getString(
+			actionRequest, "backImageURL");
+		String backShinyImageURL = ParamUtil.getString(
+			actionRequest, "backShinyImageURL");
+
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			Pokemon.class.getName(), actionRequest);
 
 		_pokemonLocalService.addPokemon(
-			originalName, customName, description, type, order, serviceContext);
+			originalName, customName, description, type, order, frontImageURL,
+			frontShinyImageURL, backImageURL, backShinyImageURL,
+			serviceContext);
 
 		sendRedirect(actionRequest, actionResponse);
 	}

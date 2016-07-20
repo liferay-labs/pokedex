@@ -31,6 +31,14 @@
 
 		<column name="order" type="long" />
 
+		<!-- Images -->
+
+		<column name="frontImageURL" type="String" />
+		<column name="frontShinyImageURL" type="String" />
+		<column name="backImageURL" type="String" />
+		<column name="backShinyImageURL" type="String" />
+
+
 		<!-- Order -->
 
 		<order>

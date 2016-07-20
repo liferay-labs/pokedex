@@ -44,7 +44,9 @@ public class PokemonLocalServiceImpl extends PokemonLocalServiceBaseImpl {
 	@Override
 	public Pokemon addPokemon(
 			String originalName, String customName, String description,
-			String type, long order, ServiceContext serviceContext)
+			String type, long order, String frontImageURL,
+			String frontShinyImageURL, String backImageURL,
+			String backShinyImageURL, ServiceContext serviceContext)
 		throws PortalException {
 
 		// Entry
@@ -69,6 +71,10 @@ public class PokemonLocalServiceImpl extends PokemonLocalServiceBaseImpl {
 		pokemon.setOrder(order);
 		pokemon.setCreateDate(serviceContext.getCreateDate());
 		pokemon.setModifiedDate(serviceContext.getModifiedDate());
+		pokemon.setFrontImageURL(frontImageURL);
+		pokemon.setFrontShinyImageURL(frontShinyImageURL);
+		pokemon.setBackImageURL(backImageURL);
+		pokemon.setBackShinyImageURL(backShinyImageURL);
 
 		return pokemonPersistence.update(pokemon);
 	}
