@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.service.BaseLocalService;
 import com.liferay.portal.kernel.service.PersistedModelLocalService;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -73,6 +74,11 @@ public interface PokemonLocalService extends BaseLocalService,
 	@Indexable(type = IndexableType.REINDEX)
 	public Pokemon addPokemon(Pokemon pokemon);
 
+	public Pokemon addPokemon(java.lang.String originalName,
+		java.lang.String customName, java.lang.String description,
+		java.lang.String type, long order, ServiceContext serviceContext)
+		throws PortalException;
+
 	/**
 	* Creates a new pokemon with the primary key. Does not add the pokemon to the database.
 	*
@@ -99,6 +105,9 @@ public interface PokemonLocalService extends BaseLocalService,
 	*/
 	@Indexable(type = IndexableType.DELETE)
 	public Pokemon deletePokemon(long id) throws PortalException;
+
+	public Pokemon deletePokemon(long id, ServiceContext serviceContext)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Pokemon fetchPokemon(long id);
@@ -144,6 +153,10 @@ public interface PokemonLocalService extends BaseLocalService,
 	*/
 	@Indexable(type = IndexableType.REINDEX)
 	public Pokemon updatePokemon(Pokemon pokemon);
+
+	public Pokemon updatePokemon(long id, java.lang.String customName,
+		java.lang.String description, ServiceContext serviceContext)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
@@ -236,6 +249,9 @@ public interface PokemonLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Pokemon> getPokemons(int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Pokemon> getPokemons(long groupId);
 
 	/**
 	* Returns all the pokemons matching the UUID and company.

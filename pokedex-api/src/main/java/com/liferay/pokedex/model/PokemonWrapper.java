@@ -232,6 +232,11 @@ public class PokemonWrapper implements Pokemon, ModelWrapper<Pokemon> {
 		return _pokemon.getDescription();
 	}
 
+	@Override
+	public java.lang.String getName() {
+		return _pokemon.getName();
+	}
+
 	/**
 	* Returns the original name of this pokemon.
 	*

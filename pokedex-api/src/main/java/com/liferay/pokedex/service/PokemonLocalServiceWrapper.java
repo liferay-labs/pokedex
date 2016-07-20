@@ -44,6 +44,16 @@ public class PokemonLocalServiceWrapper implements PokemonLocalService,
 		return _pokemonLocalService.addPokemon(pokemon);
 	}
 
+	@Override
+	public com.liferay.pokedex.model.Pokemon addPokemon(
+		java.lang.String originalName, java.lang.String customName,
+		java.lang.String description, java.lang.String type, long order,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _pokemonLocalService.addPokemon(originalName, customName,
+			description, type, order, serviceContext);
+	}
+
 	/**
 	* Creates a new pokemon with the primary key. Does not add the pokemon to the database.
 	*
@@ -78,6 +88,13 @@ public class PokemonLocalServiceWrapper implements PokemonLocalService,
 	public com.liferay.pokedex.model.Pokemon deletePokemon(long id)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _pokemonLocalService.deletePokemon(id);
+	}
+
+	@Override
+	public com.liferay.pokedex.model.Pokemon deletePokemon(long id,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _pokemonLocalService.deletePokemon(id, serviceContext);
 	}
 
 	@Override
@@ -136,6 +153,15 @@ public class PokemonLocalServiceWrapper implements PokemonLocalService,
 	public com.liferay.pokedex.model.Pokemon updatePokemon(
 		com.liferay.pokedex.model.Pokemon pokemon) {
 		return _pokemonLocalService.updatePokemon(pokemon);
+	}
+
+	@Override
+	public com.liferay.pokedex.model.Pokemon updatePokemon(long id,
+		java.lang.String customName, java.lang.String description,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _pokemonLocalService.updatePokemon(id, customName, description,
+			serviceContext);
 	}
 
 	@Override
@@ -264,6 +290,12 @@ public class PokemonLocalServiceWrapper implements PokemonLocalService,
 	public java.util.List<com.liferay.pokedex.model.Pokemon> getPokemons(
 		int start, int end) {
 		return _pokemonLocalService.getPokemons(start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.pokedex.model.Pokemon> getPokemons(
+		long groupId) {
+		return _pokemonLocalService.getPokemons(groupId);
 	}
 
 	/**

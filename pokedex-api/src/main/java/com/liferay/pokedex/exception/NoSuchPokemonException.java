@@ -19,7 +19,7 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.exception.NoSuchModelException;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Julio Camarero
  */
 @ProviderType
 public class NoSuchPokemonException extends NoSuchModelException {

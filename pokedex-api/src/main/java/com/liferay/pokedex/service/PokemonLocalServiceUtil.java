@@ -53,6 +53,16 @@ public class PokemonLocalServiceUtil {
 		return getService().addPokemon(pokemon);
 	}
 
+	public static com.liferay.pokedex.model.Pokemon addPokemon(
+		java.lang.String originalName, java.lang.String customName,
+		java.lang.String description, java.lang.String type, long order,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .addPokemon(originalName, customName, description, type,
+			order, serviceContext);
+	}
+
 	/**
 	* Creates a new pokemon with the primary key. Does not add the pokemon to the database.
 	*
@@ -84,6 +94,12 @@ public class PokemonLocalServiceUtil {
 	public static com.liferay.pokedex.model.Pokemon deletePokemon(long id)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deletePokemon(id);
+	}
+
+	public static com.liferay.pokedex.model.Pokemon deletePokemon(long id,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePokemon(id, serviceContext);
 	}
 
 	public static com.liferay.pokedex.model.Pokemon fetchPokemon(long id) {
@@ -137,6 +153,14 @@ public class PokemonLocalServiceUtil {
 	public static com.liferay.pokedex.model.Pokemon updatePokemon(
 		com.liferay.pokedex.model.Pokemon pokemon) {
 		return getService().updatePokemon(pokemon);
+	}
+
+	public static com.liferay.pokedex.model.Pokemon updatePokemon(long id,
+		java.lang.String customName, java.lang.String description,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .updatePokemon(id, customName, description, serviceContext);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
@@ -253,6 +277,11 @@ public class PokemonLocalServiceUtil {
 	public static java.util.List<com.liferay.pokedex.model.Pokemon> getPokemons(
 		int start, int end) {
 		return getService().getPokemons(start, end);
+	}
+
+	public static java.util.List<com.liferay.pokedex.model.Pokemon> getPokemons(
+		long groupId) {
+		return getService().getPokemons(groupId);
 	}
 
 	/**

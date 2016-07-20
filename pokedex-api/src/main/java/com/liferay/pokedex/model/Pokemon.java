@@ -53,4 +53,6 @@ public interface Pokemon extends PokemonModel, PersistedModel {
 				return Pokemon.class;
 			}
 		};
+
+	public java.lang.String getName();
 }
