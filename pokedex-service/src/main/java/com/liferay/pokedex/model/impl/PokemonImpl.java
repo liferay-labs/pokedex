@@ -16,6 +16,8 @@ package com.liferay.pokedex.model.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.util.Validator;
+
 /**
  * The extended model implementation for the Pokemon service. Represents a row in the &quot;Pokemon&quot; database table, with each column mapped to a property of this class.
  *
@@ -23,15 +25,23 @@ import aQute.bnd.annotation.ProviderType;
  * Helper methods and all application logic should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.pokedex.model.Pokemon} interface.
  * </p>
  *
- * @author Brian Wing Shun Chan
+ * @author Julio Camarero
  */
 @ProviderType
 public class PokemonImpl extends PokemonBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. All methods that expect a pokemon model instance should use the {@link com.liferay.pokedex.model.Pokemon} interface instead.
-	 */
+
 	public PokemonImpl() {
 	}
+
+	@Override
+	public String getName() {
+		String customName = getCustomName();
+
+		if (Validator.isNotNull(customName)) {
+			return customName;
+		}
+
+		return getOriginalName();
+	}
+
 }
