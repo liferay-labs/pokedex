@@ -80,7 +80,11 @@ public class PokemonModelImpl extends BaseModelImpl<Pokemon>
 			{ "customName", Types.VARCHAR },
 			{ "description", Types.VARCHAR },
 			{ "type_", Types.VARCHAR },
-			{ "order_", Types.BIGINT }
+			{ "order_", Types.BIGINT },
+			{ "frontImageURL", Types.VARCHAR },
+			{ "frontShinyImageURL", Types.VARCHAR },
+			{ "backImageURL", Types.VARCHAR },
+			{ "backShinyImageURL", Types.VARCHAR }
 		};
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
 
@@ -98,9 +102,13 @@ public class PokemonModelImpl extends BaseModelImpl<Pokemon>
 		TABLE_COLUMNS_MAP.put("description", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("type_", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("order_", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("frontImageURL", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("frontShinyImageURL", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("backImageURL", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("backShinyImageURL", Types.VARCHAR);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table Pokemon (uuid_ VARCHAR(75) null,id_ LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,originalName VARCHAR(75) null,customName VARCHAR(75) null,description VARCHAR(75) null,type_ VARCHAR(75) null,order_ LONG)";
+	public static final String TABLE_SQL_CREATE = "create table Pokemon (uuid_ VARCHAR(75) null,id_ LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,originalName VARCHAR(75) null,customName VARCHAR(75) null,description VARCHAR(75) null,type_ VARCHAR(75) null,order_ LONG,frontImageURL VARCHAR(75) null,frontShinyImageURL VARCHAR(75) null,backImageURL VARCHAR(75) null,backShinyImageURL VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table Pokemon";
 	public static final String ORDER_BY_JPQL = " ORDER BY pokemon.order ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Pokemon.order_ ASC";
@@ -173,6 +181,10 @@ public class PokemonModelImpl extends BaseModelImpl<Pokemon>
 		attributes.put("description", getDescription());
 		attributes.put("type", getType());
 		attributes.put("order", getOrder());
+		attributes.put("frontImageURL", getFrontImageURL());
+		attributes.put("frontShinyImageURL", getFrontShinyImageURL());
+		attributes.put("backImageURL", getBackImageURL());
+		attributes.put("backShinyImageURL", getBackShinyImageURL());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -258,6 +270,30 @@ public class PokemonModelImpl extends BaseModelImpl<Pokemon>
 
 		if (order != null) {
 			setOrder(order);
+		}
+
+		String frontImageURL = (String)attributes.get("frontImageURL");
+
+		if (frontImageURL != null) {
+			setFrontImageURL(frontImageURL);
+		}
+
+		String frontShinyImageURL = (String)attributes.get("frontShinyImageURL");
+
+		if (frontShinyImageURL != null) {
+			setFrontShinyImageURL(frontShinyImageURL);
+		}
+
+		String backImageURL = (String)attributes.get("backImageURL");
+
+		if (backImageURL != null) {
+			setBackImageURL(backImageURL);
+		}
+
+		String backShinyImageURL = (String)attributes.get("backShinyImageURL");
+
+		if (backShinyImageURL != null) {
+			setBackShinyImageURL(backShinyImageURL);
 		}
 	}
 
@@ -478,6 +514,66 @@ public class PokemonModelImpl extends BaseModelImpl<Pokemon>
 	}
 
 	@Override
+	public String getFrontImageURL() {
+		if (_frontImageURL == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _frontImageURL;
+		}
+	}
+
+	@Override
+	public void setFrontImageURL(String frontImageURL) {
+		_frontImageURL = frontImageURL;
+	}
+
+	@Override
+	public String getFrontShinyImageURL() {
+		if (_frontShinyImageURL == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _frontShinyImageURL;
+		}
+	}
+
+	@Override
+	public void setFrontShinyImageURL(String frontShinyImageURL) {
+		_frontShinyImageURL = frontShinyImageURL;
+	}
+
+	@Override
+	public String getBackImageURL() {
+		if (_backImageURL == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _backImageURL;
+		}
+	}
+
+	@Override
+	public void setBackImageURL(String backImageURL) {
+		_backImageURL = backImageURL;
+	}
+
+	@Override
+	public String getBackShinyImageURL() {
+		if (_backShinyImageURL == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _backShinyImageURL;
+		}
+	}
+
+	@Override
+	public void setBackShinyImageURL(String backShinyImageURL) {
+		_backShinyImageURL = backShinyImageURL;
+	}
+
+	@Override
 	public StagedModelType getStagedModelType() {
 		return new StagedModelType(PortalUtil.getClassNameId(
 				Pokemon.class.getName()));
@@ -527,6 +623,10 @@ public class PokemonModelImpl extends BaseModelImpl<Pokemon>
 		pokemonImpl.setDescription(getDescription());
 		pokemonImpl.setType(getType());
 		pokemonImpl.setOrder(getOrder());
+		pokemonImpl.setFrontImageURL(getFrontImageURL());
+		pokemonImpl.setFrontShinyImageURL(getFrontShinyImageURL());
+		pokemonImpl.setBackImageURL(getBackImageURL());
+		pokemonImpl.setBackShinyImageURL(getBackShinyImageURL());
 
 		pokemonImpl.resetOriginalValues();
 
@@ -690,12 +790,44 @@ public class PokemonModelImpl extends BaseModelImpl<Pokemon>
 
 		pokemonCacheModel.order = getOrder();
 
+		pokemonCacheModel.frontImageURL = getFrontImageURL();
+
+		String frontImageURL = pokemonCacheModel.frontImageURL;
+
+		if ((frontImageURL != null) && (frontImageURL.length() == 0)) {
+			pokemonCacheModel.frontImageURL = null;
+		}
+
+		pokemonCacheModel.frontShinyImageURL = getFrontShinyImageURL();
+
+		String frontShinyImageURL = pokemonCacheModel.frontShinyImageURL;
+
+		if ((frontShinyImageURL != null) && (frontShinyImageURL.length() == 0)) {
+			pokemonCacheModel.frontShinyImageURL = null;
+		}
+
+		pokemonCacheModel.backImageURL = getBackImageURL();
+
+		String backImageURL = pokemonCacheModel.backImageURL;
+
+		if ((backImageURL != null) && (backImageURL.length() == 0)) {
+			pokemonCacheModel.backImageURL = null;
+		}
+
+		pokemonCacheModel.backShinyImageURL = getBackShinyImageURL();
+
+		String backShinyImageURL = pokemonCacheModel.backShinyImageURL;
+
+		if ((backShinyImageURL != null) && (backShinyImageURL.length() == 0)) {
+			pokemonCacheModel.backShinyImageURL = null;
+		}
+
 		return pokemonCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(35);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -723,6 +855,14 @@ public class PokemonModelImpl extends BaseModelImpl<Pokemon>
 		sb.append(getType());
 		sb.append(", order=");
 		sb.append(getOrder());
+		sb.append(", frontImageURL=");
+		sb.append(getFrontImageURL());
+		sb.append(", frontShinyImageURL=");
+		sb.append(getFrontShinyImageURL());
+		sb.append(", backImageURL=");
+		sb.append(getBackImageURL());
+		sb.append(", backShinyImageURL=");
+		sb.append(getBackShinyImageURL());
 		sb.append("}");
 
 		return sb.toString();
@@ -730,7 +870,7 @@ public class PokemonModelImpl extends BaseModelImpl<Pokemon>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(43);
+		StringBundler sb = new StringBundler(55);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.pokedex.model.Pokemon");
@@ -788,6 +928,22 @@ public class PokemonModelImpl extends BaseModelImpl<Pokemon>
 			"<column><column-name>order</column-name><column-value><![CDATA[");
 		sb.append(getOrder());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>frontImageURL</column-name><column-value><![CDATA[");
+		sb.append(getFrontImageURL());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>frontShinyImageURL</column-name><column-value><![CDATA[");
+		sb.append(getFrontShinyImageURL());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>backImageURL</column-name><column-value><![CDATA[");
+		sb.append(getBackImageURL());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>backShinyImageURL</column-name><column-value><![CDATA[");
+		sb.append(getBackShinyImageURL());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -817,6 +973,10 @@ public class PokemonModelImpl extends BaseModelImpl<Pokemon>
 	private String _description;
 	private String _type;
 	private long _order;
+	private String _frontImageURL;
+	private String _frontShinyImageURL;
+	private String _backImageURL;
+	private String _backShinyImageURL;
 	private long _columnBitmask;
 	private Pokemon _escapedModel;
 }

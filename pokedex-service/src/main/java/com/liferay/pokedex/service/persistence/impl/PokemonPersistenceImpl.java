@@ -2362,6 +2362,10 @@ public class PokemonPersistenceImpl extends BasePersistenceImpl<Pokemon>
 		pokemonImpl.setDescription(pokemon.getDescription());
 		pokemonImpl.setType(pokemon.getType());
 		pokemonImpl.setOrder(pokemon.getOrder());
+		pokemonImpl.setFrontImageURL(pokemon.getFrontImageURL());
+		pokemonImpl.setFrontShinyImageURL(pokemon.getFrontShinyImageURL());
+		pokemonImpl.setBackImageURL(pokemon.getBackImageURL());
+		pokemonImpl.setBackShinyImageURL(pokemon.getBackShinyImageURL());
 
 		return pokemonImpl;
 	}

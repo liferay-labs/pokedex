@@ -284,6 +284,66 @@ public interface PokemonModel extends BaseModel<Pokemon>, GroupedModel,
 	 */
 	public void setOrder(long order);
 
+	/**
+	 * Returns the front image u r l of this pokemon.
+	 *
+	 * @return the front image u r l of this pokemon
+	 */
+	@AutoEscape
+	public String getFrontImageURL();
+
+	/**
+	 * Sets the front image u r l of this pokemon.
+	 *
+	 * @param frontImageURL the front image u r l of this pokemon
+	 */
+	public void setFrontImageURL(String frontImageURL);
+
+	/**
+	 * Returns the front shiny image u r l of this pokemon.
+	 *
+	 * @return the front shiny image u r l of this pokemon
+	 */
+	@AutoEscape
+	public String getFrontShinyImageURL();
+
+	/**
+	 * Sets the front shiny image u r l of this pokemon.
+	 *
+	 * @param frontShinyImageURL the front shiny image u r l of this pokemon
+	 */
+	public void setFrontShinyImageURL(String frontShinyImageURL);
+
+	/**
+	 * Returns the back image u r l of this pokemon.
+	 *
+	 * @return the back image u r l of this pokemon
+	 */
+	@AutoEscape
+	public String getBackImageURL();
+
+	/**
+	 * Sets the back image u r l of this pokemon.
+	 *
+	 * @param backImageURL the back image u r l of this pokemon
+	 */
+	public void setBackImageURL(String backImageURL);
+
+	/**
+	 * Returns the back shiny image u r l of this pokemon.
+	 *
+	 * @return the back shiny image u r l of this pokemon
+	 */
+	@AutoEscape
+	public String getBackShinyImageURL();
+
+	/**
+	 * Sets the back shiny image u r l of this pokemon.
+	 *
+	 * @param backShinyImageURL the back shiny image u r l of this pokemon
+	 */
+	public void setBackShinyImageURL(String backShinyImageURL);
+
 	@Override
 	public boolean isNew();
 

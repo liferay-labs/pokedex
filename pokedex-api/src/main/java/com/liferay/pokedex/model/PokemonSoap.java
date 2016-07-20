@@ -46,6 +46,10 @@ public class PokemonSoap implements Serializable {
 		soapModel.setDescription(model.getDescription());
 		soapModel.setType(model.getType());
 		soapModel.setOrder(model.getOrder());
+		soapModel.setFrontImageURL(model.getFrontImageURL());
+		soapModel.setFrontShinyImageURL(model.getFrontShinyImageURL());
+		soapModel.setBackImageURL(model.getBackImageURL());
+		soapModel.setBackShinyImageURL(model.getBackShinyImageURL());
 
 		return soapModel;
 	}
@@ -202,6 +206,38 @@ public class PokemonSoap implements Serializable {
 		_order = order;
 	}
 
+	public String getFrontImageURL() {
+		return _frontImageURL;
+	}
+
+	public void setFrontImageURL(String frontImageURL) {
+		_frontImageURL = frontImageURL;
+	}
+
+	public String getFrontShinyImageURL() {
+		return _frontShinyImageURL;
+	}
+
+	public void setFrontShinyImageURL(String frontShinyImageURL) {
+		_frontShinyImageURL = frontShinyImageURL;
+	}
+
+	public String getBackImageURL() {
+		return _backImageURL;
+	}
+
+	public void setBackImageURL(String backImageURL) {
+		_backImageURL = backImageURL;
+	}
+
+	public String getBackShinyImageURL() {
+		return _backShinyImageURL;
+	}
+
+	public void setBackShinyImageURL(String backShinyImageURL) {
+		_backShinyImageURL = backShinyImageURL;
+	}
+
 	private String _uuid;
 	private long _id;
 	private long _groupId;
@@ -215,4 +251,8 @@ public class PokemonSoap implements Serializable {
 	private String _description;
 	private String _type;
 	private long _order;
+	private String _frontImageURL;
+	private String _frontShinyImageURL;
+	private String _backImageURL;
+	private String _backShinyImageURL;
 }

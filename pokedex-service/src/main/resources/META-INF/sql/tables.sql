@@ -11,5 +11,9 @@ create table Pokemon (
 	customName VARCHAR(75) null,
 	description VARCHAR(75) null,
 	type_ VARCHAR(75) null,
-	order_ LONG
+	order_ LONG,
+	frontImageURL VARCHAR(75) null,
+	frontShinyImageURL VARCHAR(75) null,
+	backImageURL VARCHAR(75) null,
+	backShinyImageURL VARCHAR(75) null
 );

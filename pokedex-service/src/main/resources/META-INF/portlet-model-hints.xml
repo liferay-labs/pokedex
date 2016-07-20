@@ -15,5 +15,9 @@
 		<field name="description" type="String" />
 		<field name="type" type="String" />
 		<field name="order" type="long" />
+		<field name="frontImageURL" type="String" />
+		<field name="frontShinyImageURL" type="String" />
+		<field name="backImageURL" type="String" />
+		<field name="backShinyImageURL" type="String" />
 	</model>
 </model-hints>

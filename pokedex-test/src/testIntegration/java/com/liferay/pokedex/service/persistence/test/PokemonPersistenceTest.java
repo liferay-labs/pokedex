@@ -148,6 +148,14 @@ public class PokemonPersistenceTest {
 
 		newPokemon.setOrder(RandomTestUtil.nextLong());
 
+		newPokemon.setFrontImageURL(RandomTestUtil.randomString());
+
+		newPokemon.setFrontShinyImageURL(RandomTestUtil.randomString());
+
+		newPokemon.setBackImageURL(RandomTestUtil.randomString());
+
+		newPokemon.setBackShinyImageURL(RandomTestUtil.randomString());
+
 		_pokemons.add(_persistence.update(newPokemon));
 
 		Pokemon existingPokemon = _persistence.findByPrimaryKey(newPokemon.getPrimaryKey());
@@ -175,6 +183,14 @@ public class PokemonPersistenceTest {
 			newPokemon.getDescription());
 		Assert.assertEquals(existingPokemon.getType(), newPokemon.getType());
 		Assert.assertEquals(existingPokemon.getOrder(), newPokemon.getOrder());
+		Assert.assertEquals(existingPokemon.getFrontImageURL(),
+			newPokemon.getFrontImageURL());
+		Assert.assertEquals(existingPokemon.getFrontShinyImageURL(),
+			newPokemon.getFrontShinyImageURL());
+		Assert.assertEquals(existingPokemon.getBackImageURL(),
+			newPokemon.getBackImageURL());
+		Assert.assertEquals(existingPokemon.getBackShinyImageURL(),
+			newPokemon.getBackShinyImageURL());
 	}
 
 	@Test
@@ -238,7 +254,9 @@ public class PokemonPersistenceTest {
 			"id", true, "groupId", true, "companyId", true, "userId", true,
 			"userName", true, "createDate", true, "modifiedDate", true,
 			"originalName", true, "customName", true, "description", true,
-			"type", true, "order", true);
+			"type", true, "order", true, "frontImageURL", true,
+			"frontShinyImageURL", true, "backImageURL", true,
+			"backShinyImageURL", true);
 	}
 
 	@Test
@@ -473,6 +491,14 @@ public class PokemonPersistenceTest {
 		pokemon.setType(RandomTestUtil.randomString());
 
 		pokemon.setOrder(RandomTestUtil.nextLong());
+
+		pokemon.setFrontImageURL(RandomTestUtil.randomString());
+
+		pokemon.setFrontShinyImageURL(RandomTestUtil.randomString());
+
+		pokemon.setBackImageURL(RandomTestUtil.randomString());
+
+		pokemon.setBackShinyImageURL(RandomTestUtil.randomString());
 
 		_pokemons.add(_persistence.update(pokemon));
 

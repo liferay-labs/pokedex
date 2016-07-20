@@ -19,5 +19,9 @@
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property column="type_" name="type" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property column="order_" name="order" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="frontImageURL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="frontShinyImageURL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="backImageURL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="backShinyImageURL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 </hibernate-mapping>

@@ -76,7 +76,9 @@ public interface PokemonLocalService extends BaseLocalService,
 
 	public Pokemon addPokemon(java.lang.String originalName,
 		java.lang.String customName, java.lang.String description,
-		java.lang.String type, long order, ServiceContext serviceContext)
+		java.lang.String type, long order, java.lang.String frontImageURL,
+		java.lang.String frontShinyImageURL, java.lang.String backImageURL,
+		java.lang.String backShinyImageURL, ServiceContext serviceContext)
 		throws PortalException;
 
 	/**

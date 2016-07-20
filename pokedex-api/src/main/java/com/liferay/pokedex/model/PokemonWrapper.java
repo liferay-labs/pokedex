@@ -72,6 +72,10 @@ public class PokemonWrapper implements Pokemon, ModelWrapper<Pokemon> {
 		attributes.put("description", getDescription());
 		attributes.put("type", getType());
 		attributes.put("order", getOrder());
+		attributes.put("frontImageURL", getFrontImageURL());
+		attributes.put("frontShinyImageURL", getFrontShinyImageURL());
+		attributes.put("backImageURL", getBackImageURL());
+		attributes.put("backShinyImageURL", getBackShinyImageURL());
 
 		return attributes;
 	}
@@ -155,6 +159,30 @@ public class PokemonWrapper implements Pokemon, ModelWrapper<Pokemon> {
 		if (order != null) {
 			setOrder(order);
 		}
+
+		String frontImageURL = (String)attributes.get("frontImageURL");
+
+		if (frontImageURL != null) {
+			setFrontImageURL(frontImageURL);
+		}
+
+		String frontShinyImageURL = (String)attributes.get("frontShinyImageURL");
+
+		if (frontShinyImageURL != null) {
+			setFrontShinyImageURL(frontShinyImageURL);
+		}
+
+		String backImageURL = (String)attributes.get("backImageURL");
+
+		if (backImageURL != null) {
+			setBackImageURL(backImageURL);
+		}
+
+		String backShinyImageURL = (String)attributes.get("backShinyImageURL");
+
+		if (backShinyImageURL != null) {
+			setBackShinyImageURL(backShinyImageURL);
+		}
 	}
 
 	@Override
@@ -213,6 +241,26 @@ public class PokemonWrapper implements Pokemon, ModelWrapper<Pokemon> {
 	}
 
 	/**
+	* Returns the back image u r l of this pokemon.
+	*
+	* @return the back image u r l of this pokemon
+	*/
+	@Override
+	public java.lang.String getBackImageURL() {
+		return _pokemon.getBackImageURL();
+	}
+
+	/**
+	* Returns the back shiny image u r l of this pokemon.
+	*
+	* @return the back shiny image u r l of this pokemon
+	*/
+	@Override
+	public java.lang.String getBackShinyImageURL() {
+		return _pokemon.getBackShinyImageURL();
+	}
+
+	/**
 	* Returns the custom name of this pokemon.
 	*
 	* @return the custom name of this pokemon
@@ -230,6 +278,26 @@ public class PokemonWrapper implements Pokemon, ModelWrapper<Pokemon> {
 	@Override
 	public java.lang.String getDescription() {
 		return _pokemon.getDescription();
+	}
+
+	/**
+	* Returns the front image u r l of this pokemon.
+	*
+	* @return the front image u r l of this pokemon
+	*/
+	@Override
+	public java.lang.String getFrontImageURL() {
+		return _pokemon.getFrontImageURL();
+	}
+
+	/**
+	* Returns the front shiny image u r l of this pokemon.
+	*
+	* @return the front shiny image u r l of this pokemon
+	*/
+	@Override
+	public java.lang.String getFrontShinyImageURL() {
+		return _pokemon.getFrontShinyImageURL();
 	}
 
 	@Override
@@ -382,6 +450,26 @@ public class PokemonWrapper implements Pokemon, ModelWrapper<Pokemon> {
 		_pokemon.persist();
 	}
 
+	/**
+	* Sets the back image u r l of this pokemon.
+	*
+	* @param backImageURL the back image u r l of this pokemon
+	*/
+	@Override
+	public void setBackImageURL(java.lang.String backImageURL) {
+		_pokemon.setBackImageURL(backImageURL);
+	}
+
+	/**
+	* Sets the back shiny image u r l of this pokemon.
+	*
+	* @param backShinyImageURL the back shiny image u r l of this pokemon
+	*/
+	@Override
+	public void setBackShinyImageURL(java.lang.String backShinyImageURL) {
+		_pokemon.setBackShinyImageURL(backShinyImageURL);
+	}
+
 	@Override
 	public void setCachedModel(boolean cachedModel) {
 		_pokemon.setCachedModel(cachedModel);
@@ -441,6 +529,26 @@ public class PokemonWrapper implements Pokemon, ModelWrapper<Pokemon> {
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		_pokemon.setExpandoBridgeAttributes(serviceContext);
+	}
+
+	/**
+	* Sets the front image u r l of this pokemon.
+	*
+	* @param frontImageURL the front image u r l of this pokemon
+	*/
+	@Override
+	public void setFrontImageURL(java.lang.String frontImageURL) {
+		_pokemon.setFrontImageURL(frontImageURL);
+	}
+
+	/**
+	* Sets the front shiny image u r l of this pokemon.
+	*
+	* @param frontShinyImageURL the front shiny image u r l of this pokemon
+	*/
+	@Override
+	public void setFrontShinyImageURL(java.lang.String frontShinyImageURL) {
+		_pokemon.setFrontShinyImageURL(frontShinyImageURL);
 	}
 
 	/**

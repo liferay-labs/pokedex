@@ -65,7 +65,7 @@ public class PokemonCacheModel implements CacheModel<Pokemon>, Externalizable {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(35);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -93,6 +93,14 @@ public class PokemonCacheModel implements CacheModel<Pokemon>, Externalizable {
 		sb.append(type);
 		sb.append(", order=");
 		sb.append(order);
+		sb.append(", frontImageURL=");
+		sb.append(frontImageURL);
+		sb.append(", frontShinyImageURL=");
+		sb.append(frontShinyImageURL);
+		sb.append(", backImageURL=");
+		sb.append(backImageURL);
+		sb.append(", backShinyImageURL=");
+		sb.append(backShinyImageURL);
 		sb.append("}");
 
 		return sb.toString();
@@ -165,6 +173,34 @@ public class PokemonCacheModel implements CacheModel<Pokemon>, Externalizable {
 
 		pokemonImpl.setOrder(order);
 
+		if (frontImageURL == null) {
+			pokemonImpl.setFrontImageURL(StringPool.BLANK);
+		}
+		else {
+			pokemonImpl.setFrontImageURL(frontImageURL);
+		}
+
+		if (frontShinyImageURL == null) {
+			pokemonImpl.setFrontShinyImageURL(StringPool.BLANK);
+		}
+		else {
+			pokemonImpl.setFrontShinyImageURL(frontShinyImageURL);
+		}
+
+		if (backImageURL == null) {
+			pokemonImpl.setBackImageURL(StringPool.BLANK);
+		}
+		else {
+			pokemonImpl.setBackImageURL(backImageURL);
+		}
+
+		if (backShinyImageURL == null) {
+			pokemonImpl.setBackShinyImageURL(StringPool.BLANK);
+		}
+		else {
+			pokemonImpl.setBackShinyImageURL(backShinyImageURL);
+		}
+
 		pokemonImpl.resetOriginalValues();
 
 		return pokemonImpl;
@@ -190,6 +226,10 @@ public class PokemonCacheModel implements CacheModel<Pokemon>, Externalizable {
 		type = objectInput.readUTF();
 
 		order = objectInput.readLong();
+		frontImageURL = objectInput.readUTF();
+		frontShinyImageURL = objectInput.readUTF();
+		backImageURL = objectInput.readUTF();
+		backShinyImageURL = objectInput.readUTF();
 	}
 
 	@Override
@@ -249,6 +289,34 @@ public class PokemonCacheModel implements CacheModel<Pokemon>, Externalizable {
 		}
 
 		objectOutput.writeLong(order);
+
+		if (frontImageURL == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(frontImageURL);
+		}
+
+		if (frontShinyImageURL == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(frontShinyImageURL);
+		}
+
+		if (backImageURL == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(backImageURL);
+		}
+
+		if (backShinyImageURL == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(backShinyImageURL);
+		}
 	}
 
 	public String uuid;
@@ -264,4 +332,8 @@ public class PokemonCacheModel implements CacheModel<Pokemon>, Externalizable {
 	public String description;
 	public String type;
 	public long order;
+	public String frontImageURL;
+	public String frontShinyImageURL;
+	public String backImageURL;
+	public String backShinyImageURL;
 }

@@ -48,10 +48,13 @@ public class PokemonLocalServiceWrapper implements PokemonLocalService,
 	public com.liferay.pokedex.model.Pokemon addPokemon(
 		java.lang.String originalName, java.lang.String customName,
 		java.lang.String description, java.lang.String type, long order,
+		java.lang.String frontImageURL, java.lang.String frontShinyImageURL,
+		java.lang.String backImageURL, java.lang.String backShinyImageURL,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _pokemonLocalService.addPokemon(originalName, customName,
-			description, type, order, serviceContext);
+			description, type, order, frontImageURL, frontShinyImageURL,
+			backImageURL, backShinyImageURL, serviceContext);
 	}
 
 	/**
