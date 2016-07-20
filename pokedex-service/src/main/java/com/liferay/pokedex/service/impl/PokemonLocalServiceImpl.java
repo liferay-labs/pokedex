@@ -16,7 +16,13 @@ package com.liferay.pokedex.service.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.pokedex.model.Pokemon;
 import com.liferay.pokedex.service.base.PokemonLocalServiceBaseImpl;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.ServiceContext;
+
+import java.util.List;
 
 /**
  * The implementation of the pokemon local service.
@@ -28,15 +34,78 @@ import com.liferay.pokedex.service.base.PokemonLocalServiceBaseImpl;
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
  * </p>
  *
- * @author Brian Wing Shun Chan
+ * @author Julio Camarero
  * @see PokemonLocalServiceBaseImpl
  * @see com.liferay.pokedex.service.PokemonLocalServiceUtil
  */
 @ProviderType
 public class PokemonLocalServiceImpl extends PokemonLocalServiceBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. Always use {@link com.liferay.pokedex.service.PokemonLocalServiceUtil} to access the pokemon local service.
-	 */
+
+	@Override
+	public Pokemon addPokemon(
+			String originalName, String customName, String description,
+			String type, long order, ServiceContext serviceContext)
+		throws PortalException {
+
+		// Entry
+
+		User user = userPersistence.findByPrimaryKey(
+			serviceContext.getUserId());
+		long groupId = serviceContext.getScopeGroupId();
+
+		long id = counterLocalService.increment();
+
+		Pokemon pokemon = pokemonPersistence.create(id);
+
+		pokemon.setUuid(serviceContext.getUuid());
+		pokemon.setGroupId(groupId);
+		pokemon.setCompanyId(user.getCompanyId());
+		pokemon.setUserId(user.getUserId());
+		pokemon.setUserName(user.getFullName());
+		pokemon.setOriginalName(originalName);
+		pokemon.setCustomName(customName);
+		pokemon.setDescription(description);
+		pokemon.setType(type);
+		pokemon.setOrder(order);
+		pokemon.setCreateDate(serviceContext.getCreateDate());
+		pokemon.setModifiedDate(serviceContext.getModifiedDate());
+
+		return pokemonPersistence.update(pokemon);
+	}
+
+	@Override
+	public Pokemon deletePokemon(long id, ServiceContext serviceContext)
+		throws PortalException {
+
+		Pokemon pokemon = pokemonPersistence.findByPrimaryKey(id);
+
+		return pokemonPersistence.remove(pokemon);
+	}
+
+	@Override
+	public List<Pokemon> getPokemons(long groupId) {
+		return pokemonPersistence.findByGroupId(groupId);
+	}
+
+	@Override
+	public Pokemon updatePokemon(
+			long id, String customName, String description,
+			ServiceContext serviceContext)
+		throws PortalException {
+
+		// Entry
+
+		User user = userPersistence.findByPrimaryKey(
+			serviceContext.getUserId());
+		long groupId = serviceContext.getScopeGroupId();
+
+		Pokemon pokemon = pokemonPersistence.findByPrimaryKey(id);
+
+		pokemon.setCustomName(customName);
+		pokemon.setDescription(description);
+		pokemon.setModifiedDate(serviceContext.getModifiedDate());
+
+		return pokemonPersistence.update(pokemon);
+	}
+
 }
