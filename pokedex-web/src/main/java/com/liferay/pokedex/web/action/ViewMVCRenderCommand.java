@@ -14,6 +14,8 @@
 
 package com.liferay.pokedex.web.action;
 
+import com.liferay.pokedex.model.Pokemon;
+import com.liferay.pokedex.service.PokemonLocalService;
 import com.liferay.pokedex.web.portlet.PokedexPortletKeys;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
@@ -21,11 +23,17 @@ import com.liferay.portal.kernel.template.Template;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.WebKeys;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Julio Camarero
@@ -62,7 +70,41 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 
 		template.put("userName", user.getFirstName());
 
+		List<Pokemon> pokemons = _pokemonLocalService.getPokemons(
+			user.getGroupId());
+
+		template.put("pokemons", toSoyData(pokemons));
+
 		return PATH;
 	}
+
+	protected List<Map<String, Object>> toSoyData(List<Pokemon> pokemons) {
+		List soyPokemons = new ArrayList(pokemons.size());
+
+		for (Pokemon pokemon : pokemons) {
+			Map<String, Object> soyPokemon = new HashMap<>();
+
+			soyPokemon.put("name", pokemon.getName());
+			soyPokemon.put("order", pokemon.getOrder());
+			soyPokemon.put("description", pokemon.getDescription());
+			soyPokemon.put("type", pokemon.getType());
+			soyPokemon.put("frontImageURL", pokemon.getFrontImageURL());
+			soyPokemon.put(
+				"frontShinyImageURL", pokemon.getFrontShinyImageURL());
+			soyPokemon.put("backImageURL", pokemon.getBackImageURL());
+			soyPokemon.put("backShinyImageURL", pokemon.getBackShinyImageURL());
+		}
+
+		return soyPokemons;
+	}
+
+	@Reference(unbind = "-")
+	protected void setPokemonLocalService(
+		PokemonLocalService pokemonLocalService) {
+
+		_pokemonLocalService = pokemonLocalService;
+	}
+
+	private PokemonLocalService _pokemonLocalService;
 
 }
