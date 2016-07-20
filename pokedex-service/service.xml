@@ -42,7 +42,7 @@
 		<finder name="GroupId" return-type="Collection">
 			<finder-column name="groupId" />
 		</finder>
-		
+
 		<!-- References -->
 
 		<reference entity="Company" package-path="com.liferay.portal" />

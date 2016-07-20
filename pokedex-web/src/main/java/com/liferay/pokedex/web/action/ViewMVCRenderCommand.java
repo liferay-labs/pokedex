@@ -20,11 +20,12 @@ import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 import com.liferay.portal.kernel.template.Template;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.WebKeys;
-import org.osgi.service.component.annotations.Component;
 
 import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
+
+import org.osgi.service.component.annotations.Component;
 
 /**
  * @author Julio Camarero
@@ -39,6 +40,8 @@ import javax.portlet.RenderResponse;
 )
 public class ViewMVCRenderCommand implements MVCRenderCommand {
 
+	public static final String PATH = "pokedex_view";
+
 	@Override
 	public String render(
 		RenderRequest renderRequest, RenderResponse renderResponse) {
@@ -48,8 +51,7 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 
 		PortletURL portletURL = renderResponse.createRenderURL();
 
-		portletURL.setParameter(
-			"mvcRenderCommandName", "pokedex_edit_pokemon");
+		portletURL.setParameter("mvcRenderCommandName", "pokedex_edit_pokemon");
 
 		template.put("editPokemonPortletURL", portletURL.toString());
 
@@ -62,7 +64,5 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 
 		return PATH;
 	}
-
-	public static final String PATH = "pokedex_view";
 
 }
