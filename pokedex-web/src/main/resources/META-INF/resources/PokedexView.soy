@@ -11,14 +11,16 @@
 {template .render}
 	<div id="{$id}">
 		<h1>Hello, {$userName}!</h1>
-		<h2>This is your POKEDEX&copy;, here you can find all the POKÉMONS&copy; you captured</h2>
+		<h2>This is your POKÉDEX©, here you can find all the POKÉMONS© you captured</h2>
 
 		{if $pokemons}
-			{foreach $pokemon in $pokemons}
-				{call pokemon.list_view}
-					{param pokemon: $pokemon /}
-				{/call}
-			{/foreach}
+			<div class="pokemon_list">
+				{foreach $pokemon in $pokemons}
+					{call .pokemon_list_view}
+						{param pokemon: $pokemon /}
+					{/call}
+				{/foreach}
+			</div>
 		{/if}
 
 		{call Dropdown.render}
@@ -43,5 +45,30 @@
 		{/call}
 
 		<a href="{$editPokemonPortletURL}">Go catch POKÉMONS!</a>
+	</div>
+{/template}
+
+/**
+ * Prints the Pokemon details.
+ *
+ * @param pokemon
+ */
+{template .pokemon_list_view}
+	<div class="pokemon col-md-3">
+		<div class="card card-horizontal">
+			<div class="card-row">
+				<div class="card-col-field">
+					<img class="image" src="{$pokemon.frontImageURL}">
+				</div>
+
+				<div class="card-col-content card-col-gutters">
+					<h4 style="margin:0;">
+						<span class="text-default">#{$pokemon.order} </span>
+						{$pokemon.name}
+					</h4>
+					<h5 class="type-{$pokemon.type}" style="margin-top:0;">{$pokemon.type}</h5>
+				</div>
+			</div>
+		</div>
 	</div>
 {/template}
