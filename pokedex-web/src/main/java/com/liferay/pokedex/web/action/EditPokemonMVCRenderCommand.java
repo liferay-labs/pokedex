@@ -49,11 +49,14 @@ public class EditPokemonMVCRenderCommand implements MVCRenderCommand {
 
 		PortletURL portletURL = renderResponse.createRenderURL();
 
-		portletURL.setParameter("mvcRenderCommandName", "pokedex_view");
+		portletURL.setParameter(
+			"mvcRenderCommandName", "PokedexView");
 
 		template.put("backPortletURL", portletURL.toString());
 
 		return PATH;
 	}
+
+	public static final String PATH = "PokedexEditPokemon";
 
 }

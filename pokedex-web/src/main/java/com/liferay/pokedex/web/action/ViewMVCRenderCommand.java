@@ -59,7 +59,8 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 
 		PortletURL portletURL = renderResponse.createRenderURL();
 
-		portletURL.setParameter("mvcRenderCommandName", "pokedex_edit_pokemon");
+		portletURL.setParameter(
+			"mvcRenderCommandName", "PokedexEditPokemon");
 
 		template.put("editPokemonPortletURL", portletURL.toString());
 
@@ -106,5 +107,7 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 	}
 
 	private PokemonLocalService _pokemonLocalService;
+
+	public static final String PATH = "PokedexView";
 
 }

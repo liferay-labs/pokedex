@@ -1,0 +1,16 @@
+{namespace PokedexEditPokemon}
+
+/**
+ * Prints the Pokedex portlet page to add/edit a Pokemon.
+ *
+ * @param backPortletURL
+ * @param pokemons
+ */
+{template .render}
+	{foreach $pokemon in $pokemons}
+		{call pokemon.list_view}
+		{/call}
+	{/foreach}
+
+	<a href="{$backPortletURL}">Back to your POKEDEX&copy;.</a>
+{/template}
