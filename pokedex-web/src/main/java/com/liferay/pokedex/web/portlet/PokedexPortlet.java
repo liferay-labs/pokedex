@@ -38,7 +38,7 @@ import org.osgi.service.component.annotations.Component;
 		"javax.portlet.expiration-cache=0",
 		"javax.portlet.init-param.copy-request-parameters=true",
 		"javax.portlet.init-param.template-path=/",
-		"javax.portlet.init-param.view-template=pokedex_view",
+		"javax.portlet.init-param.view-template=PokedexView",
 		"javax.portlet.name=" + PokedexPortletKeys.POKEDEX,
 		"javax.portlet.security-role-ref=administrator,guest,power-user,user",
 		"javax.portlet.supports.mime-type=text/html"
