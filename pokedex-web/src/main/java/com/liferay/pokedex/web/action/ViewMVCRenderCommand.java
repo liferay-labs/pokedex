@@ -48,8 +48,6 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class ViewMVCRenderCommand implements MVCRenderCommand {
 
-	public static final String PATH = "pokedex_view";
-
 	@Override
 	public String render(
 		RenderRequest renderRequest, RenderResponse renderResponse) {

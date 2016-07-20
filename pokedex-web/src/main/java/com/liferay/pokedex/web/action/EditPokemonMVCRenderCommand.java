@@ -38,8 +38,6 @@ import org.osgi.service.component.annotations.Component;
 )
 public class EditPokemonMVCRenderCommand implements MVCRenderCommand {
 
-	public static final String PATH = "pokedex_edit_pokemon";
-
 	@Override
 	public String render(
 		RenderRequest renderRequest, RenderResponse renderResponse) {
