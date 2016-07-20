@@ -1,8 +1,8 @@
 Bundle-Name: Liferay Pokedex Web
 Bundle-SymbolicName: com.liferay.pokedex.web
 Bundle-Version: 1.0.0
-Liferay-JS-Config: /js/config.js
 Liferay-Releng-Module-Group-Description:
 Liferay-Releng-Module-Group-Title: Pokedex
 Web-ContextPath: /pokedex-web
+Require-Capability: soy;filter:="(type=metal)"
 -dsannotations-options: inherit

@@ -1,0 +1,7 @@
+{
+	"devDependencies": {
+		"metal-dropdown": "1.0.0"
+	},
+	"name": "pokedex-web",
+	"version": "1.0.0"
+}
