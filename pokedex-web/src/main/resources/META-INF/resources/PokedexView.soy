@@ -28,13 +28,20 @@
 		{/if}
 
 		<a 
-			class="btn btn-primary btn-action btn-bottom-right icon-monospaced"  
-			title="Catch'em all!" 
-			href="{$editPokemonPortletURL}" 
+			class="btn btn-primary btn-action btn-bottom-right icon-monospaced"
+			data-title="Catch'em all!"
+			title="Catch'em all!"
+			href="{$editPokemonPortletURL}"
 		>
 			<span class="icon-plus"></span>
 		</a>
+
 	</div>
+	{call Tooltip.render}
+		{param elementClasses: 'fade' /}
+		{param selector: '[data-title]' /}
+		{param visible: false /}
+	{/call}
 {/template}
 
 /**
