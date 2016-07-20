@@ -3,20 +3,26 @@
 /**
  * Prints the Pokedex portlet view page.
  *
- * @param editPokemonPortletURL
+ * @param? editPokemonPortletURL
  * @param id
- * @param userName
+ * @param? userName
  * @param? pokemons
+ * @param? selectDropdown
+ * @param? action
+ * @param? selectPokemon
  */
 {template .render}
 	<div id="{$id}">
-		<h1>Hello, {$userName}!</h1>
+		<h1>Hello, {$userName or 'Invitado'}!</h1>
 		<h2>This is your POKEDEX&copy;, here you can find all the POKÉMONS&copy; you captured</h2>
-
+		<p>Action: {$action}</p>
+		<p>Pokemon selected: </p>
 		{if $pokemons}
+			<h1>There are pokemons</h1>
 			{foreach $pokemon in $pokemons}
 				{call pokemon.list_view}
 					{param pokemon: $pokemon /}
+					{param selectPokemon: $selectPokemon /}
 				{/call}
 			{/foreach}
 		{/if}
@@ -24,24 +30,24 @@
 		{call Dropdown.render}
 			{param header kind="html"}
 				<a class="btn" data-onclick="toggle" href="javascript:;">
-					Header
+					{$action}
 				</a>
 			{/param}
 
 			{param body kind="html"}
-					<li data-onclick="toggle">
-						<a>Hijo 1</a>
+					<li data-onclick="{$selectDropdown}">
+						<a data-value="edit">Edit</a>
 					</li>
 					<li data-onclick="toggle">
 						<a>Hijo 2</a>
 					</li>
 			{/param}
 
-			{param elementClasses: 'dropup' /}
+			{param elementClasses: 'dropdown' /}
 			{param position: 0 /}
 			{param positionClassOnMenu: true /}
 		{/call}
 
-		<a href="{$editPokemonPortletURL}">Go catch POKÉMONS!</a>
+		<a href="{$editPokemonPortletURL or 'aningunlugar'}">Go catch POKÉMONS!</a>
 	</div>
 {/template}

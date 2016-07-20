@@ -12,7 +12,23 @@ class PokedexView extends Component {
 	constructor(opt_config) {
 		super(opt_config);
 	}
+
+	selectDropdown(event) {
+		this.action = event.target.dataset.value;
+	}
+
+	selectPokemon(pokemon) {
+		debugger;
+	}
 }
+
+PokedexView.STATE = {
+	action: {
+		// The default value will be: `true`.
+		value: 'list'
+	}
+};
+
 
 // Register component
 Soy.register(PokedexView, templates);

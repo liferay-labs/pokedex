@@ -3,13 +3,16 @@
 /**
  * Prints a pokemon from the list.
  * @param? pokemon
+ * @param? selectPokemon
  */
 {template .list_view}
-{$pokemon.name}
-{$pokemon.order}
-{$pokemon.type}
-{$pokemon.frontImageURL}
-{$pokemon.frontShinyImageURL}
-{$pokemon.backImageURL}
-{$pokemon.backShinyImageURL}
+<div data-onclick="{$selectPokemon}" data-pokemon="{$pokemon}">
+	{$pokemon.name}
+	{$pokemon.order}
+	{$pokemon.type}
+	{$pokemon.frontImageURL}
+	{$pokemon.frontShinyImageURL}
+	{$pokemon.backImageURL}
+	{$pokemon.backShinyImageURL}
+</div>
 {/template}
