@@ -7,42 +7,25 @@
  * @param id
  * @param userName
  * @param? pokemons
+ * @param pathThemeImages
  */
 {template .render}
-	<div id="{$id}">
-		<h1>Hello, {$userName}!</h1>
-		<h2>This is your POKÉDEX©, here you can find all the POKÉMONS© you captured</h2>
+	<div class="container-fluid-1280" id="{$id}">
+		<div class="row">
+			<h2>Hello, {$userName}!</h2>
+			<h3>This is your POKÉDEX©, here you can find all the POKÉMONS© you captured</h3>
+		</div>
 
 		{if $pokemons}
-			<div class="pokemon_list">
+			<div class="pokemon_list row">
 				{foreach $pokemon in $pokemons}
 					{call .pokemon_list_view}
 						{param pokemon: $pokemon /}
+						{param pathThemeImages: $pathThemeImages /}
 					{/call}
 				{/foreach}
 			</div>
 		{/if}
-
-		{call Dropdown.render}
-			{param header kind="html"}
-				<a class="btn" data-onclick="toggle" href="javascript:;">
-					Header
-				</a>
-			{/param}
-
-			{param body kind="html"}
-					<li data-onclick="toggle">
-						<a>Hijo 1</a>
-					</li>
-					<li data-onclick="toggle">
-						<a>Hijo 2</a>
-					</li>
-			{/param}
-
-			{param elementClasses: 'dropup' /}
-			{param position: 0 /}
-			{param positionClassOnMenu: true /}
-		{/call}
 
 		<a href="{$editPokemonPortletURL}">Go catch POKÉMONS!</a>
 	</div>
@@ -51,6 +34,7 @@
 /**
  * Prints the Pokemon details.
  *
+ * @param pathThemeImages
  * @param pokemon
  */
 {template .pokemon_list_view}
@@ -59,6 +43,7 @@
 			<div class="card-row">
 				<div class="card-col-field">
 					<img class="image" src="{$pokemon.frontImageURL}">
+					<img class="image-shiny hide" src="{$pokemon.frontShinyImageURL}">
 				</div>
 
 				<div class="card-col-content card-col-gutters">
@@ -66,7 +51,35 @@
 						<span class="text-default">#{$pokemon.order} </span>
 						{$pokemon.name}
 					</h4>
-					<h5 class="type-{$pokemon.type}" style="margin-top:0;">{$pokemon.type}</h5>
+					<h5>Type: <span class="type-{$pokemon.type}" style="margin-top:0;">{$pokemon.type}</span></h5>
+				</div>
+
+				<div class="card-col-field">
+					{call Dropdown.render}
+						{param header kind="html"}
+							<a class="icon-monospaced" data-onclick="toggle" href="javascript:;">
+								<svg class="lexicon-icon">
+								    <use xlink:href="{$pathThemeImages}/lexicon/icons.svg#ellipsis-v"></use>
+								</svg>
+							</a>
+						{/param}
+
+						{param body kind="html"}
+								<li data-onclick="toggle">
+									<a>View</a>
+								</li>
+								<li data-onclick="toggle">
+									<a>Edit</a>
+								</li>
+								<li data-onclick="toggle">
+									<a>Remove</a>
+								</li>
+						{/param}
+
+						{param elementClasses: 'dropdown' /}
+						{param position: 0 /}
+						{param positionClassOnMenu: true /}
+					{/call}
 				</div>
 			</div>
 		</div>
