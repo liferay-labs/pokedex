@@ -68,6 +68,8 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 		User user = themeDisplay.getUser();
 
 		template.put("userName", user.getFirstName());
+		
+		template.put("pathThemeImages", themeDisplay.getPathThemeImages());
 
 		List<Pokemon> pokemons = _pokemonLocalService.getPokemons(
 			user.getGroupId());
