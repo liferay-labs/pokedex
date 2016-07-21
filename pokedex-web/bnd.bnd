@@ -3,6 +3,6 @@ Bundle-SymbolicName: com.liferay.pokedex.web
 Bundle-Version: 1.0.0
 Liferay-Releng-Module-Group-Description:
 Liferay-Releng-Module-Group-Title: Pokedex
-Web-ContextPath: /pokedex-web
 Require-Capability: soy;filter:="(type=metal)"
+Web-ContextPath: /pokedex-web
 -dsannotations-options: inherit

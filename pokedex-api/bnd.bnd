@@ -4,7 +4,7 @@ Bundle-Version: 1.0.0
 Export-Package:\
 	com.liferay.pokedex.exception,\
 	com.liferay.pokedex.model,\
-	com.liferay.pokedex.service.persistence,\
-	com.liferay.pokedex.service
+	com.liferay.pokedex.service,\
+	com.liferay.pokedex.service.persistence
 Liferay-Releng-Module-Group-Description:
 Liferay-Releng-Module-Group-Title: Pokedex
