@@ -36,7 +36,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + PokedexPortletKeys.POKEDEX,
-		"mvc.command.name=/pokedex/add_pokemon"
+		"mvc.command.name=add_pokemon"
 	},
 	service = MVCActionCommand.class
 )

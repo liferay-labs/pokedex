@@ -42,7 +42,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + PokedexPortletKeys.POKEDEX,
-		"mvc.command.name=/", "mvc.command.name=" + ViewMVCRenderCommand.PATH
+		"mvc.command.name=/"
 	},
 	service = MVCRenderCommand.class
 )
@@ -57,8 +57,7 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 
 		PortletURL portletURL = renderResponse.createRenderURL();
 
-		portletURL.setParameter(
-			"mvcRenderCommandName", "PokedexEditPokemon");
+		portletURL.setParameter("mvcRenderCommandName", "edit_pokemon");
 
 		template.put("editPokemonPortletURL", portletURL.toString());
 
