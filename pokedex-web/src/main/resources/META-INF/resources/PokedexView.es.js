@@ -2,8 +2,10 @@ import Component from 'metal-component/src/Component';
 import Soy from 'metal-soy/src/Soy';
 
 import Dropdown from 'metal-dropdown/src/Dropdown';
+import Tooltip from 'metal-tooltip/src/Tooltip';
 
 import templates from './PokedexView.soy';
+import pokemonViewTemplates from './PokemonView.soy';
 
 class PokedexView extends Component {
 	/**
@@ -11,14 +13,17 @@ class PokedexView extends Component {
 	 */
 	constructor(opt_config) {
 		super(opt_config);
+		this.listPokemons = opt_config.pokemons.slice();
+		this.pokemons = opt_config.pokemons;
 	}
 
-	selectDropdown(event) {
-		this.action = event.target.dataset.value;
-	}
+	filter(event) {
+		var search = event.target.value;
 
-	selectPokemon(pokemon) {
-		debugger;
+		this.pokemons = this.listPokemons.filter(pokemon => {
+			return pokemon.name.indexOf(search) !== -1;
+		})
+
 	}
 }
 
@@ -26,7 +31,12 @@ PokedexView.STATE = {
 	action: {
 		// The default value will be: `true`.
 		value: 'list'
+	},
+
+	listPokemons: {
+		value: []
 	}
+
 };
 
 
