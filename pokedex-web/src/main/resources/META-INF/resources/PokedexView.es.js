@@ -21,7 +21,7 @@ class PokedexView extends Component {
 		var search = event.target.value;
 
 		this.pokemons = this.listPokemons.filter(pokemon => {
-			return pokemon.name.indexOf(search) !== -1;
+			return pokemon.name.toLowerCase().indexOf(search.toLowerCase()) !== -1;
 		})
 
 	}
