@@ -3,13 +3,28 @@
 /**
  * Prints the Pokedex portlet page to add/edit a Pokemon.
  *
- * @param backPortletURL
- * @param pokemons
+ * @param backURL
+ * @param id
+ * @param pokemon
+ * @param updatePokemonURL
  */
 {template .render}
-	{foreach $pokemon in $pokemons}
+	<div class="container-fluid-1280" id="{$id}">
+		<a href="{$backURL}">Back to your POKÉDEX©.</a>
 
-	{/foreach}
+		<form method="post" action="{$updatePokemonURL}">
+			<input type="hidden" name="id" value="{$pokemon.id}"></input>
+			{call PokemonView.detail_view}
+				{param pokemon: $pokemon /}
+			{/call}
 
-	<a href="{$backPortletURL}">Back to your POKÉDEX©.</a>
+			<input type="submit" value="Save"></input>
+		</form>
+	</div>
+
+	{call Tooltip.render}
+		{param elementClasses: 'fade' /}
+		{param selector: '[data-title]' /}
+		{param visible: false /}
+	{/call}
 {/template}
