@@ -20,7 +20,7 @@
 		<div class="pokemon_list row">
 			{if length($pokemons) > 0}
 				{foreach $pokemon in $pokemons}
-					{call PokemonView.list_view}
+					{call PokemonListItem.render}
 						{param pokemon: $pokemon /}
 						{param pathThemeImages: $pathThemeImages /}
 					{/call}
