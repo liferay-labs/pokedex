@@ -12,7 +12,9 @@
 		<field name="modifiedDate" type="Date" />
 		<field name="originalName" type="String" />
 		<field name="customName" type="String" />
-		<field name="description" type="String" />
+		<field name="description" type="String">
+			<hint name="max-length">4000</hint>
+		</field>
 		<field name="type" type="String" />
 		<field name="order" type="long" />
 		<field name="frontImageURL" type="String" />
