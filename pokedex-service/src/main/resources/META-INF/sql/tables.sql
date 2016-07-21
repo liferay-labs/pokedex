@@ -9,7 +9,7 @@ create table Pokemon (
 	modifiedDate DATE null,
 	originalName VARCHAR(75) null,
 	customName VARCHAR(75) null,
-	description VARCHAR(75) null,
+	description STRING null,
 	type_ VARCHAR(75) null,
 	order_ LONG,
 	frontImageURL VARCHAR(75) null,
