@@ -75,10 +75,9 @@ public class AddDefaultPokemonsPortalInstanceLifecycleListener
 
 		_pokemonLocalService.addPokemon(
 			"Pikachu", null,
-			"Pikachu is a short, chubby rodent Pokémon. It is covered in " +
-			"yellow fur, and its ears are long and pointed with black tips.",
-			"electric", 25,
-			"http://pokeapi.co/media/sprites/pokemon/25.png",
+			"Pikachu is a short, chubby rodent Pokémon. It is covered in yell" +
+				"ow fur, and its ears are long and pointed with black tips.",
+			"electric", 25, "http://pokeapi.co/media/sprites/pokemon/25.png",
 			"http://pokeapi.co/media/sprites/pokemon/shiny/25.png",
 			"http://pokeapi.co/media/sprites/pokemon/back/25.png",
 			"http://pokeapi.co/media/sprites/pokemon/back/shiny/25.png",
@@ -87,10 +86,9 @@ public class AddDefaultPokemonsPortalInstanceLifecycleListener
 		_pokemonLocalService.addPokemon(
 			"Squirtle", null,
 			"Squirtle is a small Pokémon that resembles a light blue turtle." +
-			" While it typically walks on its two short legs, it has been " +
-			"shown to run on all fours in Super Smash Bros.",
-			"water", 7,
-			"http://pokeapi.co/media/sprites/pokemon/7.png",
+				" While it typically walks on its two short legs, it has been" +
+				" shown to run on all fours in Super Smash Bros.",
+			"water", 7, "http://pokeapi.co/media/sprites/pokemon/7.png",
 			"http://pokeapi.co/media/sprites/pokemon/shiny/7.png",
 			"http://pokeapi.co/media/sprites/pokemon/back/7.png",
 			"http://pokeapi.co/media/sprites/pokemon/back/shiny/7.png",

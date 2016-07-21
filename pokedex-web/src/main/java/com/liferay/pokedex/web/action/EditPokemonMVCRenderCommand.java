@@ -47,8 +47,9 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class EditPokemonMVCRenderCommand implements MVCRenderCommand {
 
-	public static final String PATH = "PokedexEditPokemon";
 	public static final String ERROR_PATH = "PokedexEditPokemonError";
+
+	public static final String PATH = "PokedexEditPokemon";
 
 	@Override
 	public String render(
