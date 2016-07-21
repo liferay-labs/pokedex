@@ -99,6 +99,7 @@ public class EditPokemonMVCRenderCommand implements MVCRenderCommand {
 	protected Map<String, Object> toSoyData(Pokemon pokemon) {
 		Map<String, Object> soyPokemon = new HashMap<>();
 
+		soyPokemon.put("id", pokemon.getId());
 		soyPokemon.put("name", pokemon.getName());
 		soyPokemon.put("order", pokemon.getOrder());
 		soyPokemon.put("description", pokemon.getDescription());

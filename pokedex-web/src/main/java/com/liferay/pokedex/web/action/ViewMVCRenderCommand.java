@@ -118,6 +118,7 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 		for (Pokemon pokemon : pokemons) {
 			Map<String, Object> soyPokemon = new HashMap<>();
 
+			soyPokemon.put("id", pokemon.getId());
 			soyPokemon.put("name", pokemon.getName());
 			soyPokemon.put("order", pokemon.getOrder());
 			soyPokemon.put("description", pokemon.getDescription());
