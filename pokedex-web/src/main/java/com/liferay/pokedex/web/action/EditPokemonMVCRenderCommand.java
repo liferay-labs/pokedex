@@ -58,6 +58,8 @@ public class EditPokemonMVCRenderCommand implements MVCRenderCommand {
 
 		template.put("backURL", getBackURL(renderResponse));
 
+		template.put("portletNamespace", renderResponse.getNamespace());
+
 		long id = ParamUtil.getLong(renderRequest, "id");
 
 		try {
