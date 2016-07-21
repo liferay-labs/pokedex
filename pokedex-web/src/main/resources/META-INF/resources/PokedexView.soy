@@ -16,7 +16,13 @@
 				<h3>This is your POKÉDEX©, here you can find all the POKÉMONS© you captured.</h3>
 			</div>
 		</div>
-		<input class="field form-control lfr-input-text" placeholder="Search" data-onkeyup="{$filter}">
+
+		<div class="row">
+			<div class="col-md-3 text-center">
+				<input class="field form-control lfr-input-text" placeholder="Search" data-onkeyup="{$filter}">
+			</div>
+		</div>
+
 		<div class="pokemon_list row">
 			{if length($pokemons) > 0}
 				{foreach $pokemon in $pokemons}
