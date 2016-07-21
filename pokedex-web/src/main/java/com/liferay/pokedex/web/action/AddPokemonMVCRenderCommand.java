@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.template.Template;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.WebKeys;
 
+import javax.portlet.ActionRequest;
 import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -48,6 +49,8 @@ public class AddPokemonMVCRenderCommand implements MVCRenderCommand {
 		Template template = (Template)renderRequest.getAttribute(
 			WebKeys.TEMPLATE);
 
+		template.put("addPokemonURL", getAddPokemonURL(renderResponse));
+
 		template.put("backURL", getBackURL(renderResponse));
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
@@ -56,6 +59,15 @@ public class AddPokemonMVCRenderCommand implements MVCRenderCommand {
 		template.put("pathThemeImages", themeDisplay.getPathThemeImages());
 
 		return PATH;
+	}
+
+	protected String getAddPokemonURL(RenderResponse renderResponse) {
+		PortletURL portletURL = renderResponse.createActionURL();
+
+		portletURL.setParameter(ActionRequest.ACTION_NAME, "add_pokemon");
+		portletURL.setParameter("redirect", getBackURL(renderResponse));
+
+		return portletURL.toString();
 	}
 
 	protected String getBackURL(RenderResponse renderResponse) {
