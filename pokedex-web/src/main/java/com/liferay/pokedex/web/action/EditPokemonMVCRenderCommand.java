@@ -48,6 +48,7 @@ import org.osgi.service.component.annotations.Reference;
 public class EditPokemonMVCRenderCommand implements MVCRenderCommand {
 
 	public static final String PATH = "PokedexEditPokemon";
+	public static final String ERROR_PATH = "PokedexEditPokemonError";
 
 	@Override
 	public String render(
@@ -68,7 +69,7 @@ public class EditPokemonMVCRenderCommand implements MVCRenderCommand {
 			template.put("pokemon", toSoyData(pokemon));
 		}
 		catch (PortalException pe) {
-			return PATH + ".error";
+			return ERROR_PATH;
 		}
 
 		template.put("updatePokemonURL", getUpdatePokemonURL(renderResponse));
