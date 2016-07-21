@@ -14,16 +14,24 @@
 
 package com.liferay.pokedex.web.action;
 
+import com.liferay.pokedex.model.Pokemon;
+import com.liferay.pokedex.service.PokemonLocalService;
 import com.liferay.pokedex.web.portlet.PokedexPortletKeys;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 import com.liferay.portal.kernel.template.Template;
+import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Julio Camarero
@@ -38,6 +46,8 @@ import org.osgi.service.component.annotations.Component;
 )
 public class EditPokemonMVCRenderCommand implements MVCRenderCommand {
 
+	public static final String PATH = "PokedexEditPokemon";
+
 	@Override
 	public String render(
 		RenderRequest renderRequest, RenderResponse renderResponse) {
@@ -45,16 +55,62 @@ public class EditPokemonMVCRenderCommand implements MVCRenderCommand {
 		Template template = (Template)renderRequest.getAttribute(
 			WebKeys.TEMPLATE);
 
-		PortletURL portletURL = renderResponse.createRenderURL();
+		template.put("backURL", getBackURL(renderResponse));
 
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/");
+		long id = ParamUtil.getLong(renderRequest, "id");
 
-		template.put("backPortletURL", portletURL.toString());
+		try {
+			Pokemon pokemon = _pokemonLocalService.getPokemon(id);
+
+			template.put("pokemon", toSoyData(pokemon));
+		}
+		catch (PortalException pe) {
+			return PATH + ".error";
+		}
+
+		template.put("updatePokemonURL", getUpdatePokemonURL(renderResponse));
 
 		return PATH;
 	}
 
-	public static final String PATH = "PokedexEditPokemon";
+	protected String getBackURL(RenderResponse renderResponse) {
+		PortletURL portletURL = renderResponse.createRenderURL();
+
+		portletURL.setParameter("mvcRenderCommandName", "/");
+
+		return portletURL.toString();
+	}
+
+	protected String getUpdatePokemonURL(RenderResponse renderResponse) {
+		PortletURL portletURL = renderResponse.createActionURL();
+
+		portletURL.setParameter("mvcRenderCommandName", "edit_pokemon");
+
+		return portletURL.toString();
+	}
+
+	@Reference(unbind = "-")
+	protected void setPokemonLocalService(
+		PokemonLocalService pokemonLocalService) {
+
+		_pokemonLocalService = pokemonLocalService;
+	}
+
+	protected Map<String, Object> toSoyData(Pokemon pokemon) {
+		Map<String, Object> soyPokemon = new HashMap<>();
+
+		soyPokemon.put("name", pokemon.getName());
+		soyPokemon.put("order", pokemon.getOrder());
+		soyPokemon.put("description", pokemon.getDescription());
+		soyPokemon.put("type", pokemon.getType());
+		soyPokemon.put("frontImageURL", pokemon.getFrontImageURL());
+		soyPokemon.put("frontShinyImageURL", pokemon.getFrontShinyImageURL());
+		soyPokemon.put("backImageURL", pokemon.getBackImageURL());
+		soyPokemon.put("backShinyImageURL", pokemon.getBackShinyImageURL());
+
+		return soyPokemon;
+	}
+
+	private PokemonLocalService _pokemonLocalService;
 
 }
