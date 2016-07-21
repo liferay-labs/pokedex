@@ -85,6 +85,7 @@ public class EditPokemonMVCRenderCommand implements MVCRenderCommand {
 		PortletURL portletURL = renderResponse.createActionURL();
 
 		portletURL.setParameter("mvcRenderCommandName", "edit_pokemon");
+		portletURL.setParameter("redirect", getBackURL(renderResponse));
 
 		return portletURL.toString();
 	}
