@@ -24,6 +24,7 @@ import javax.portlet.ActionRequest;
 import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
+import javax.portlet.ResourceURL;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -51,6 +52,8 @@ public class AddPokemonMVCRenderCommand implements MVCRenderCommand {
 
 		template.put("addPokemonURL", getAddPokemonURL(renderResponse));
 
+		template.put("getPokemonsURL", getGetPokemonsURL(renderResponse));
+
 		template.put("backURL", getBackURL(renderResponse));
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
@@ -74,6 +77,14 @@ public class AddPokemonMVCRenderCommand implements MVCRenderCommand {
 		PortletURL portletURL = renderResponse.createRenderURL();
 
 		portletURL.setParameter("mvcRenderCommandName", "/");
+
+		return portletURL.toString();
+	}
+
+	protected String getGetPokemonsURL(RenderResponse renderResponse) {
+		ResourceURL portletURL = renderResponse.createResourceURL();
+
+		portletURL.setResourceID("get_pokemons");
 
 		return portletURL.toString();
 	}
