@@ -28,6 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.portlet.ActionRequest;
 import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -86,7 +87,7 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 
 		PortletURL portletURL = renderResponse.createActionURL();
 
-		portletURL.setParameter("mvcRenderCommandName", "delete_pokemon");
+		portletURL.setParameter(ActionRequest.ACTION_NAME, "delete_pokemon");
 		portletURL.setParameter("id", String.valueOf(pokemon.getId()));
 
 		return portletURL.toString();

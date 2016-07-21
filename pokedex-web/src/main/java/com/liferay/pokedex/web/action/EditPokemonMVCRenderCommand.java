@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.util.WebKeys;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.portlet.ActionRequest;
 import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -84,7 +85,7 @@ public class EditPokemonMVCRenderCommand implements MVCRenderCommand {
 	protected String getUpdatePokemonURL(RenderResponse renderResponse) {
 		PortletURL portletURL = renderResponse.createActionURL();
 
-		portletURL.setParameter("mvcRenderCommandName", "edit_pokemon");
+		portletURL.setParameter(ActionRequest.ACTION_NAME, "edit_pokemon");
 		portletURL.setParameter("redirect", getBackURL(renderResponse));
 
 		return portletURL.toString();
