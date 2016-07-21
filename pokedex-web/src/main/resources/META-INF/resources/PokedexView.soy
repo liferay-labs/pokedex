@@ -3,40 +3,44 @@
 /**
  * Prints the Pokedex portlet view page.
  *
- * @param editPokemonPortletURL
+ * @param? addPokemonURL
  * @param id
- * @param userName
- * @param? pokemons
+ * @param pokemons
  * @param pathThemeImages
  */
 {template .render}
 	<div class="container-fluid-1280" id="{$id}">
 		<div class="row">
-			<h2>Hello, {$userName}!</h2>
-			<h3>This is your POKÉDEX©, here you can find all the POKÉMONS© you captured</h3>
+			<div class="col-md-12 text-center">
+				<h3>This is your POKÉDEX©, here you can find all the POKÉMONS© you captured.</h3>
+			</div>
 		</div>
 
-		{if $pokemons}
-			<div class="pokemon_list row">
+		<div class="pokemon_list row">
+			{if length($pokemons) > 0}
 				{foreach $pokemon in $pokemons}
 					{call PokemonView.list_view}
 						{param pokemon: $pokemon /}
 						{param pathThemeImages: $pathThemeImages /}
 					{/call}
 				{/foreach}
-			</div>
+			{else}
+				<p>You don't have any Pokémons© yet. Go catch'em all!</p>
+			{/if}
+		</div>
+
+		{if $addPokemonURL}
+			<a 
+				class="btn btn-primary btn-action btn-bottom-right icon-monospaced"
+				data-title="Catch'em all!"
+				title="Catch'em all!"
+				href="{$addPokemonURL}"
+			>
+				<span class="icon-plus"></span>
+			</a>
 		{/if}
-
-		<a 
-			class="btn btn-primary btn-action btn-bottom-right icon-monospaced"
-			data-title="Catch'em all!"
-			title="Catch'em all!"
-			href="{$editPokemonPortletURL}"
-		>
-			<span class="icon-plus"></span>
-		</a>
-
 	</div>
+
 	{call Tooltip.render}
 		{param elementClasses: 'fade' /}
 		{param selector: '[data-title]' /}
