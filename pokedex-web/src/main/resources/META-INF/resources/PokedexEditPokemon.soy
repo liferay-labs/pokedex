@@ -7,13 +7,14 @@
  * @param id
  * @param pokemon
  * @param updatePokemonURL
+ * @param portletNamespace
  */
 {template .render}
 	<div class="container-fluid-1280" id="{$id}">
 		<a href="{$backURL}">Back to your POKÉDEX©.</a>
 
 		<form class="row" method="post" action="{$updatePokemonURL}">
-			<input type="hidden" name="id" value="{$pokemon.id}"></input>
+			<input type="hidden" name="{$portletNamespace}id" value="{$pokemon.id}"></input>
 			
 			<div class="col-md-4 col-md-offset-4">
 				<div class="card card-rounded pokemon" style="overflow: hidden;">
@@ -28,7 +29,7 @@
 							<input 
 								class="text-center"
 								data-title="Customize your Pokémon name"
-								name="customName"
+								name="{$portletNamespace}customName"
 								style="margin:0;" 
 								type="text" 
 								value="{$pokemon.name}"
