@@ -56,6 +56,8 @@ public class AddPokemonMVCRenderCommand implements MVCRenderCommand {
 
 		template.put("backURL", getBackURL(renderResponse));
 
+		template.put("portletNamespace", renderResponse.getNamespace());
+
 		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 

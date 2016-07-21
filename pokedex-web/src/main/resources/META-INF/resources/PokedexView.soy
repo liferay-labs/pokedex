@@ -29,6 +29,14 @@
 					{call PokemonListItem.render}
 						{param pokemon: $pokemon /}
 						{param pathThemeImages: $pathThemeImages /}
+						{param menu kind="html"}
+							<li data-onclick="toggle">
+								<a href="{$pokemon.editPokemonURL}">Edit</a>
+							</li>
+							<li data-onclick="toggle">
+								<a href="{$pokemon.deletePokemonURL}">Transfer</a>
+							</li>
+						{/param}
 					{/call}
 				{/foreach}
 			{else}

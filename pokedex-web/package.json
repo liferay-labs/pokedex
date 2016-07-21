@@ -1,5 +1,6 @@
 {
 	"devDependencies": {
+		"metal-ajax": "1.0.0",
 		"metal-dropdown": "1.0.0",
 		"metal-tooltip": "1.0.0"
 	},

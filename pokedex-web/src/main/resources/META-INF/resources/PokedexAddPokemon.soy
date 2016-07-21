@@ -1,7 +1,57 @@
 {namespace PokedexAddPokemon}
 
 /**
- *
+ * @param pokemons
+ * @param addPokemonURL
+ * @param pathThemeImages
+ * @param backURL
+ * @param id
+ * @param? filter
+ * @param? getPokemons
+ * @param portletNamespace
  */
 {template .render}
+	<div class="container-fluid-1280" id="{$id}">
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<h3>Catch'em all!</h3>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-3 text-center">
+				<input class="field form-control lfr-input-text" placeholder="Search" data-onkeyup="{$filter}">
+			</div>
+		</div>
+
+		<div class="pokemon_list row">
+			{if $pokemons and length($pokemons) > 0}
+				{foreach $pokemon in $pokemons}
+					<form action="{$addPokemonURL}" class="addPokemon" method="POST">
+						{call PokemonListItem.render}
+							{param pokemon: $pokemon /}
+							{param pathThemeImages: $pathThemeImages /}
+							{param menu kind="html"}
+								<li data-onclick="toggle">
+									<input class="btn btn-link" type="submit" value="Catch!"></input>
+								</li>
+							{/param}
+						{/call}
+						<input type="hidden" name="{$portletNamespace}originalName" value="{$pokemon.name}">
+						<input type="hidden" name="{$portletNamespace}description" value="{$pokemon.description}">
+						<input type="hidden" name="{$portletNamespace}type" value="{$pokemon.type}">
+						<input type="hidden" name="{$portletNamespace}order" value="{$pokemon.order}">
+						<input type="hidden" name="{$portletNamespace}frontImageURL" value="{$pokemon.frontImageURL}">
+						<input type="hidden" name="{$portletNamespace}frontShinyImageURL" value="{$pokemon.frontShinyImageURL}">
+						<input type="hidden" name="{$portletNamespace}backImageURL" value="{$pokemon.backImageURL}">
+						<input type="hidden" name="{$portletNamespace}backShinyImageURL" value="{$pokemon.backShinyImageURL}">
+					</form>
+				{/foreach}
+			{/if}
+		</div>
+
+		<button class="btn btn-default" onclick="{$getPokemons}">View more</button>
+
+		<a href="{$backURL}">Back to POKÉDEX©</a>
+	</div>
 {/template}
