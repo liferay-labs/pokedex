@@ -41,12 +41,13 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	immediate = true,
 	property = {
-		"javax.portlet.name=" + PokedexPortletKeys.POKEDEX,
-		"mvc.command.name=/", "mvc.command.name=" + ViewMVCRenderCommand.PATH
+		"javax.portlet.name=" + PokedexPortletKeys.POKEDEX, "mvc.command.name=/"
 	},
 	service = MVCRenderCommand.class
 )
 public class ViewMVCRenderCommand implements MVCRenderCommand {
+
+	public static final String PATH = "PokedexView";
 
 	@Override
 	public String render(
@@ -55,34 +56,69 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 		Template template = (Template)renderRequest.getAttribute(
 			WebKeys.TEMPLATE);
 
-		PortletURL portletURL = renderResponse.createRenderURL();
-
-		portletURL.setParameter(
-			"mvcRenderCommandName", "PokedexEditPokemon");
-
-		template.put("editPokemonPortletURL", portletURL.toString());
+		template.put("addPokemonURL", getAddPokemonURL(renderResponse));
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		User user = themeDisplay.getUser();
+		template.put("pathThemeImages", themeDisplay.getPathThemeImages());
 
-		template.put("userName", user.getFirstName());
+		User user = themeDisplay.getUser();
 
 		List<Pokemon> pokemons = _pokemonLocalService.getPokemons(
 			user.getGroupId());
 
-		template.put("pokemons", toSoyData(pokemons));
+		template.put("pokemons", toSoyData(pokemons, renderResponse));
 
 		return PATH;
 	}
 
-	protected List<Map<String, Object>> toSoyData(List<Pokemon> pokemons) {
+	protected String getAddPokemonURL(RenderResponse renderResponse) {
+		PortletURL portletURL = renderResponse.createRenderURL();
+
+		portletURL.setParameter("mvcRenderCommandName", "add_pokemon");
+
+		return portletURL.toString();
+	}
+
+	protected String getDeletePokemonURL(
+		Pokemon pokemon, RenderResponse renderResponse) {
+
+		PortletURL portletURL = renderResponse.createActionURL();
+
+		portletURL.setParameter("mvcRenderCommandName", "delete_pokemon");
+		portletURL.setParameter("id", String.valueOf(pokemon.getId()));
+
+		return portletURL.toString();
+	}
+
+	protected String getEditPokemonURL(
+		Pokemon pokemon, RenderResponse renderResponse) {
+
+		PortletURL portletURL = renderResponse.createRenderURL();
+
+		portletURL.setParameter("mvcRenderCommandName", "edit_pokemon");
+		portletURL.setParameter("id", String.valueOf(pokemon.getId()));
+
+		return portletURL.toString();
+	}
+
+	@Reference(unbind = "-")
+	protected void setPokemonLocalService(
+		PokemonLocalService pokemonLocalService) {
+
+		_pokemonLocalService = pokemonLocalService;
+	}
+
+	protected List<Map<String, Object>> toSoyData(
+		List<Pokemon> pokemons, RenderResponse renderResponse) {
+
 		List soyPokemons = new ArrayList(pokemons.size());
 
 		for (Pokemon pokemon : pokemons) {
 			Map<String, Object> soyPokemon = new HashMap<>();
 
+			soyPokemon.put("id", pokemon.getId());
 			soyPokemon.put("name", pokemon.getName());
 			soyPokemon.put("order", pokemon.getOrder());
 			soyPokemon.put("description", pokemon.getDescription());
@@ -93,21 +129,18 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 			soyPokemon.put("backImageURL", pokemon.getBackImageURL());
 			soyPokemon.put("backShinyImageURL", pokemon.getBackShinyImageURL());
 
+			soyPokemon.put(
+				"editPokemonURL", getEditPokemonURL(pokemon, renderResponse));
+			soyPokemon.put(
+				"deletePokemonURL",
+				getDeletePokemonURL(pokemon, renderResponse));
+
 			soyPokemons.add(soyPokemon);
 		}
 
 		return soyPokemons;
 	}
 
-	@Reference(unbind = "-")
-	protected void setPokemonLocalService(
-		PokemonLocalService pokemonLocalService) {
-
-		_pokemonLocalService = pokemonLocalService;
-	}
-
 	private PokemonLocalService _pokemonLocalService;
-
-	public static final String PATH = "PokedexView";
 
 }

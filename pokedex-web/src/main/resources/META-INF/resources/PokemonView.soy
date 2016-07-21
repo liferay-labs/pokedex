@@ -1,0 +1,95 @@
+{namespace PokemonView}
+
+/**
+ *
+ */
+{template .render}
+{/template}
+
+/**
+ * Prints the Pokemon details.
+ *
+ * @param pathThemeImages
+ * @param pokemon
+ */
+{template .list_view}
+	<div class="col-md-3">
+		<div class="card card-horizontal pokemon">
+			<div class="card-row">
+				<div class="card-col-field">
+					<img class="image" src="{$pokemon.frontImageURL}">
+					<img class="image-shiny hide" src="{$pokemon.frontShinyImageURL}">
+				</div>
+
+				<div class="card-col-content card-col-gutters">
+					<h4 style="margin:0;">
+						<span class="text-default">#{$pokemon.order} </span>
+						{$pokemon.name}
+					</h4>
+					<h5>Type: <span class="type-{$pokemon.type}" style="margin-top:0;">{$pokemon.type}</span></h5>
+				</div>
+
+				<div class="card-col-field">
+					{call Dropdown.render}
+						{param header kind="html"}
+							<a class="icon-monospaced" data-onclick="toggle" href="javascript:;">
+								<svg class="lexicon-icon">
+								    <use xlink:href="{$pathThemeImages}/lexicon/icons.svg#ellipsis-v"></use>
+								</svg>
+							</a>
+						{/param}
+
+						{param body kind="html"}
+							<li data-onclick="toggle">
+								<a href="{$pokemon.editPokemonURL}">Edit</a>
+							</li>
+							<li data-onclick="toggle">
+								<a href="{$pokemon.editPokemonURL}">Transfer</a>
+							</li>
+						{/param}
+
+						{param elementClasses: 'dropdown' /}
+						{param position: 0 /}
+						{param positionClassOnMenu: true /}
+					{/call}
+				</div>
+			</div>
+		</div>
+	</div>
+{/template}
+
+/**
+ *
+ * @param pokemon
+ */
+{template .detail_view}
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<div class="card card-rounded pokemon" style="overflow: hidden;">
+				<div class="text-center">
+					<img class="image" src="{$pokemon.frontImageURL}">
+					<img class="image-shiny hide" src="{$pokemon.frontShinyImageURL}">
+				</div>
+
+				<div class="card-row card-row-padded card-row-valign-top">
+					<div class="card-col-content" style="height: 125px; text-align: center;">
+						<h5 class="text-default" style="margin:0;">#{$pokemon.order}</h5>
+						<input 
+							class="text-center"
+							data-title="Customize your Pokémon name"
+							name="customName"
+							style="margin:0;" 
+							type="text" 
+							value="{$pokemon.name}"
+						>
+						</input>
+						<h5 class="text-default" style="margin-top:0;">
+							Type: <span class="type-{$pokemon.type}">{$pokemon.type}</span>
+						</h5>
+						<p>{$pokemon.description}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{/template}

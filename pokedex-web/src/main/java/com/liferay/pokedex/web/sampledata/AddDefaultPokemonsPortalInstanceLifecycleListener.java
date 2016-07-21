@@ -74,7 +74,10 @@ public class AddDefaultPokemonsPortalInstanceLifecycleListener
 		serviceContext.setScopeGroupId(user.getGroupId());
 
 		_pokemonLocalService.addPokemon(
-			"Pikachu", null, null, "electric", 25,
+			"Pikachu", null,
+			"Pikachu is a short, chubby rodent Pokémon. It is covered in " +
+			"yellow fur, and its ears are long and pointed with black tips.",
+			"electric", 25,
 			"http://pokeapi.co/media/sprites/pokemon/25.png",
 			"http://pokeapi.co/media/sprites/pokemon/shiny/25.png",
 			"http://pokeapi.co/media/sprites/pokemon/back/25.png",
@@ -82,7 +85,11 @@ public class AddDefaultPokemonsPortalInstanceLifecycleListener
 			serviceContext);
 
 		_pokemonLocalService.addPokemon(
-			"Squirtle", null, null, "water", 7,
+			"Squirtle", null,
+			"Squirtle is a small Pokémon that resembles a light blue turtle." +
+			" While it typically walks on its two short legs, it has been " +
+			"shown to run on all fours in Super Smash Bros.",
+			"water", 7,
 			"http://pokeapi.co/media/sprites/pokemon/7.png",
 			"http://pokeapi.co/media/sprites/pokemon/shiny/7.png",
 			"http://pokeapi.co/media/sprites/pokemon/back/7.png",

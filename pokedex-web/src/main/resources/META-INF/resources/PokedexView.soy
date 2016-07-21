@@ -3,51 +3,49 @@
 /**
  * Prints the Pokedex portlet view page.
  *
- * @param? editPokemonPortletURL
+ * @param? addPokemonURL
  * @param id
- * @param? userName
- * @param? pokemons
- * @param? selectDropdown
- * @param? action
- * @param? selectPokemon
+ * @param pokemons
+ * @param pathThemeImages
+ * @param? filter
  */
 {template .render}
-	<div id="{$id}">
-		<h1>Hello, {$userName or 'Invitado'}!</h1>
-		<h2>This is your POKEDEX&copy;, here you can find all the POKÉMONS&copy; you captured</h2>
-		<p>Action: {$action}</p>
-		<p>Pokemon selected: </p>
-		{if $pokemons}
-			<h1>There are pokemons</h1>
-			{foreach $pokemon in $pokemons}
-				{call pokemon.list_view}
-					{param pokemon: $pokemon /}
-					{param selectPokemon: $selectPokemon /}
-				{/call}
-			{/foreach}
+	<div class="container-fluid-1280" id="{$id}">
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<h3>This is your POKÉDEX©, here you can find all the POKÉMONS© you captured.</h3>
+			</div>
+		</div>
+		<input class="field form-control lfr-input-text" placeholder="Search" data-onkeyup="{$filter}">
+		<div class="pokemon_list row">
+			{if length($pokemons) > 0}
+				{foreach $pokemon in $pokemons}
+					{call PokemonView.list_view}
+						{param pokemon: $pokemon /}
+						{param pathThemeImages: $pathThemeImages /}
+					{/call}
+				{/foreach}
+			{else}
+				<p>You don't have any Pokémons© yet. Go catch'em all!</p>
+			{/if}
+		</div>
+
+		{if $addPokemonURL}
+			<a
+				class="btn btn-primary btn-action btn-bottom-right icon-monospaced"
+				data-title="Catch'em all!"
+				title="Catch'em all!"
+				href="{$addPokemonURL}"
+			>
+				<span class="icon-plus"></span>
+			</a>
 		{/if}
 
-		{call Dropdown.render}
-			{param header kind="html"}
-				<a class="btn" data-onclick="toggle" href="javascript:;">
-					{$action}
-				</a>
-			{/param}
-
-			{param body kind="html"}
-					<li data-onclick="{$selectDropdown}">
-						<a data-value="edit">Edit</a>
-					</li>
-					<li data-onclick="toggle">
-						<a>Hijo 2</a>
-					</li>
-			{/param}
-
-			{param elementClasses: 'dropdown' /}
-			{param position: 0 /}
-			{param positionClassOnMenu: true /}
-		{/call}
-
-		<a href="{$editPokemonPortletURL or 'aningunlugar'}">Go catch POKÉMONS!</a>
 	</div>
+
+	{call Tooltip.render}
+		{param elementClasses: 'fade' /}
+		{param selector: '[data-title]' /}
+		{param visible: false /}
+	{/call}
 {/template}

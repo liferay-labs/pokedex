@@ -1,4 +1,17 @@
 @import "bourbon";
 
 .pokedex-portlet {
+	.pokemon {
+		.type-water {
+			color: #0091FF;
+		}
+
+		.type-electric {
+			color: #f6bf22
+		}
+	}
+
+	.row {
+		margin-bottom: 15px;
+	}
 }
