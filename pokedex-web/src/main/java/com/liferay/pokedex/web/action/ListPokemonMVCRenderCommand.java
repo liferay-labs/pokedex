@@ -46,7 +46,7 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = MVCRenderCommand.class
 )
-public class ViewMVCRenderCommand implements MVCRenderCommand {
+public class ListPokemonMVCRenderCommand implements MVCRenderCommand {
 
 	public static final String PATH = "PokedexListPokemon";
 
