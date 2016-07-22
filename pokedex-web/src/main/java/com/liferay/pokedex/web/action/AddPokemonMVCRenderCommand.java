@@ -26,6 +26,8 @@ import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceURL;
 
+import java.util.ArrayList;
+
 import org.osgi.service.component.annotations.Component;
 
 /**
@@ -62,6 +64,8 @@ public class AddPokemonMVCRenderCommand implements MVCRenderCommand {
 			WebKeys.THEME_DISPLAY);
 
 		template.put("pathThemeImages", themeDisplay.getPathThemeImages());
+
+		template.put("pokemons", new ArrayList());
 
 		return PATH;
 	}
