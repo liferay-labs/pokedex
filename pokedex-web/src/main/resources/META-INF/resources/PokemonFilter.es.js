@@ -8,7 +8,7 @@ import core from 'metal/src/core';
 import templates from './PokemonFilter.soy';
 
 class PokemonFilter extends Component {
-	attached(){
+	attached() {
 		var instance = this;
 
 		var inputSearch = document.getElementById('input-search');
