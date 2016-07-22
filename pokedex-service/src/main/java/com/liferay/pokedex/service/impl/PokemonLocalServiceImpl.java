@@ -53,7 +53,7 @@ public class PokemonLocalServiceImpl extends PokemonLocalServiceBaseImpl {
 
 		User user = userPersistence.findByPrimaryKey(
 			serviceContext.getUserId());
-		long groupId = serviceContext.getScopeGroupId();
+		long groupId = user.getGroupId();
 
 		long id = counterLocalService.increment();
 

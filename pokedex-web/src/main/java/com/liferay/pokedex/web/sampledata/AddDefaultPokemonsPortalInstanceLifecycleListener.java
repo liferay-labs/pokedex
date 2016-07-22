@@ -57,7 +57,7 @@ public class AddDefaultPokemonsPortalInstanceLifecycleListener
 			}
 
 			List<Pokemon> pokemons = _pokemonLocalService.getPokemons(
-				group.getGroupId());
+				user.getGroupId());
 
 			if (!pokemons.isEmpty()) {
 				continue;
@@ -71,7 +71,6 @@ public class AddDefaultPokemonsPortalInstanceLifecycleListener
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setUserId(user.getUserId());
-		serviceContext.setScopeGroupId(user.getGroupId());
 
 		_pokemonLocalService.addPokemon(
 			"Pikachu", null,
