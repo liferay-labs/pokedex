@@ -4,11 +4,11 @@ import Soy from 'metal-soy/src/Soy';
 import Dropdown from 'metal-dropdown/src/Dropdown';
 import Tooltip from 'metal-tooltip/src/Tooltip';
 
-import templates from './PokedexView.soy';
+import templates from './PokedexListPokemon.soy';
 import pokemonViewTemplates from './PokemonListItem.soy';
 import PokemonFilter from './PokemonFilter.es';
 
-class PokedexView extends Component {
+class PokedexListPokemon extends Component {
 	/**
 	 * @inheritDoc
 	 */
@@ -22,7 +22,7 @@ class PokedexView extends Component {
 	}
 }
 
-PokedexView.STATE = {
+PokedexListPokemon.STATE = {
 	action: {
 		// The default value will be: `true`.
 		value: 'list'
@@ -31,6 +31,6 @@ PokedexView.STATE = {
 
 
 // Register component
-Soy.register(PokedexView, templates);
+Soy.register(PokedexListPokemon, templates);
 
-export default PokedexView;
+export default PokedexListPokemon;
