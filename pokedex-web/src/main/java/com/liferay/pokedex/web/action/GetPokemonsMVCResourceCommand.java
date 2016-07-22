@@ -21,15 +21,20 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.portlet.JSONPortletResponseUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCResourceCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCResourceCommand;
+import com.liferay.portal.kernel.util.ParamUtil;
 
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
+import me.sargunvohra.lib.pokekotlin.client.PokeApi;
+import me.sargunvohra.lib.pokekotlin.client.PokeApiClient;
+import me.sargunvohra.lib.pokekotlin.model.Pokemon;
+import me.sargunvohra.lib.pokekotlin.model.PokemonSprites;
+
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Bruno Basto
- * @author Leonardo Barros
+ * @author Julio Camarero
  */
 @Component(
 	immediate = true,
@@ -41,25 +46,6 @@ import org.osgi.service.component.annotations.Component;
 )
 public class GetPokemonsMVCResourceCommand extends BaseMVCResourceCommand {
 
-	protected JSONObject addPokemon(
-		String name, long order, String description, String type,
-		String frontImageURL, String frontShinyImageURL, String backImageURL,
-		String backShinyImageURL) {
-
-		JSONObject pokemon = JSONFactoryUtil.createJSONObject();
-
-		pokemon.put("name", name);
-		pokemon.put("order", order);
-		pokemon.put("description", description);
-		pokemon.put("type", type);
-		pokemon.put("frontImageURL", frontImageURL);
-		pokemon.put("frontShinyImageURL", frontShinyImageURL);
-		pokemon.put("backImageURL", backImageURL);
-		pokemon.put("backShinyImageURL", backShinyImageURL);
-
-		return pokemon;
-	}
-
 	@Override
 	protected void doServeResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
@@ -67,30 +53,40 @@ public class GetPokemonsMVCResourceCommand extends BaseMVCResourceCommand {
 
 		JSONArray pokemons = JSONFactoryUtil.createJSONArray();
 
-		JSONObject bulbasaur = addPokemon(
-			"Bulbasaur", 1,
-			"Bulbasaur is a small, quadruped Pokémon that has blue-green skin" +
-				" with darker green patches.",
-			"grass", "http://pokeapi.co/media/sprites/pokemon/1.png",
-			"http://pokeapi.co/media/sprites/pokemon/shiny/1.png",
-			"http://pokeapi.co/media/sprites/pokemon/back/1.png",
-			"http://pokeapi.co/media/sprites/pokemon/back/shiny/1.png");
+		int start = ParamUtil.getInteger(resourceRequest, "start", 0);
+		int end = ParamUtil.getInteger(resourceRequest, "end", 8);
 
-		pokemons.put(bulbasaur);
+		PokeApi pokeApi = new PokeApiClient();
 
-		JSONObject charmander = addPokemon(
-			"Charmander", 4,
-			"Charmander is a bipedal, reptilian Pokémon with a primarily " +
-				"orange body",
-			"fire", "http://pokeapi.co/media/sprites/pokemon/4.png",
-			"http://pokeapi.co/media/sprites/pokemon/shiny/4.png",
-			"http://pokeapi.co/media/sprites/pokemon/back/4.png",
-			"http://pokeapi.co/media/sprites/pokemon/back/shiny/4.png");
+		for (int i = start; i < end; i++) {
+			Pokemon pokemon = pokeApi.getPokemon(i + 1);
 
-		pokemons.put(charmander);
+			pokemons.put(toJSONPokemon(pokemon));
+		}
 
 		JSONPortletResponseUtil.writeJSON(
 			resourceRequest, resourceResponse, pokemons);
+	}
+
+	protected JSONObject toJSONPokemon(Pokemon pokemon) {
+		JSONObject pokemonJSON = JSONFactoryUtil.createJSONObject();
+
+		pokemonJSON.put("name", pokemon.getName());
+		pokemonJSON.put("order", pokemon.getOrder());
+		pokemonJSON.put("description", "");
+
+		String type = pokemon.getTypes().get(0).getType().getName();
+
+		pokemonJSON.put("type", type);
+
+		PokemonSprites sprites = pokemon.getSprites();
+
+		pokemonJSON.put("frontImageURL", sprites.getFrontDefault());
+		pokemonJSON.put("frontShinyImageURL", sprites.getFrontShiny());
+		pokemonJSON.put("backImageURL", sprites.getBackDefault());
+		pokemonJSON.put("backShinyImageURL", sprites.getBackShiny());
+
+		return pokemonJSON;
 	}
 
 }
