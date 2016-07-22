@@ -86,7 +86,7 @@ public class AddDefaultPokemonsPortalInstanceLifecycleListener
 			"Squirtle", null,
 			"Squirtle is a small Pokémon that resembles a light blue turtle." +
 				" While it typically walks on its two short legs, it has been" +
-				" shown to run on all fours in Super Smash Bros.",
+					" shown to run on all fours in Super Smash Bros.",
 			"water", 7, "http://pokeapi.co/media/sprites/pokemon/7.png",
 			"http://pokeapi.co/media/sprites/pokemon/shiny/7.png",
 			"http://pokeapi.co/media/sprites/pokemon/back/7.png",
