@@ -36,3 +36,4 @@
 /tools/*/lib
 sonar.*.properties
 node_modules
+.task-cache/
