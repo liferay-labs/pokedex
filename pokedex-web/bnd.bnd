@@ -1,8 +1,20 @@
 Bundle-Name: Liferay Pokedex Web
 Bundle-SymbolicName: com.liferay.pokedex.web
 Bundle-Version: 1.0.0
+Import-Package:\
+	!android.*,\
+	*
 Liferay-Releng-Module-Group-Description:
 Liferay-Releng-Module-Group-Title: Pokedex
 Require-Capability: soy;filter:="(type=metal)"
 Web-ContextPath: /pokedex-web
 -dsannotations-options: inherit
+-includeresource:\
+	@converter-gson*.jar,\
+	@gson*.jar,\
+	@kotlin-runtime*.jar,\
+	@kotlin-stdlib*.jar,\
+	@okhttp*.jar,\
+	@okio*.jar,\
+	@pokekotlin*.jar,\
+	@retrofit*.jar
