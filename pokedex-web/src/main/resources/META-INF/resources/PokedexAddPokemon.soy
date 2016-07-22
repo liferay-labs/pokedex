@@ -9,7 +9,7 @@
  * @param? getPokemons
  * @param portletNamespace
  * @param updatePokemons
- * @param listPokemons
+ * @param originalPokemonList
  */
 {template .render}
 	<div class="container-fluid-1280" id="{$id}">
@@ -22,7 +22,7 @@
 		{call PokemonFilter.render}
 			{param key: $id + 'Filter' /}
 			{param updatePokemons: $updatePokemons /}
-			{param listPokemons: $listPokemons /}
+			{param originalPokemonList: $originalPokemonList /}
 		{/call}
 
 		<div class="pokemon_list row">

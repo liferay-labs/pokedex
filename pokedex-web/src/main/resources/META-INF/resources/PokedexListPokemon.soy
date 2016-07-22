@@ -6,7 +6,7 @@
  * @param? addPokemonURL
  * @param id
  * @param pokemons
- * @param listPokemons
+ * @param originalPokemonList
  * @param pathThemeImages
  * @param? updatePokemons
  */
@@ -21,7 +21,7 @@
 		{call PokemonFilter.render}
 			{param key: $id + 'Filter' /}
 			{param updatePokemons: $updatePokemons /}
-			{param listPokemons: $listPokemons /}
+			{param originalPokemonList: $originalPokemonList /}
 		{/call}
 
 		<div class="pokemon_list row">

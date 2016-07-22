@@ -31,7 +31,7 @@ class PokedexAddPokemon extends Component {
 		.then(
 			function(response) {
 				instance.pokemons = JSON.parse(response.response);
-				instance.listPokemons = JSON.parse(response.response);
+				instance.originalPokemonList = JSON.parse(response.response);
 			}
 		);
 	}
@@ -45,7 +45,7 @@ PokedexAddPokemon.STATE = {
 	pokemons: {
 		value: []
 	},
-	listPokemons: {
+	originalPokemonList: {
 		value: []
 	}
 };

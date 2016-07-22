@@ -13,7 +13,7 @@ class PokedexListPokemon extends Component {
 	 * @inheritDoc
 	 */
 	constructor(opt_config) {
-		opt_config.listPokemons = opt_config.pokemons.slice();
+		opt_config.originalPokemonList = opt_config.pokemons.slice();
 		super(opt_config);
 	}
 

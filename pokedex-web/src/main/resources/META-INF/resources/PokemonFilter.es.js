@@ -18,7 +18,7 @@ class PokemonFilter extends Component {
 				elementClasses: 'autocomplete-pokemon',
 				inputElement: inputSearch,
 				data: function(query) {
-					return instance.listPokemons.filter(function(item) {
+					return instance.originalPokemonList.filter(function(item) {
 						item.textPrimary = item.name;
 						return query && item.name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
 					});
@@ -38,7 +38,7 @@ class PokemonFilter extends Component {
 	}
 
 	filterPokemon(name) {
-		var pokemons = this.listPokemons.filter(pokemon => {
+		var pokemons = this.originalPokemonList.filter(pokemon => {
 			return pokemon.name.toLowerCase().indexOf(name.toLowerCase()) !== -1;
 		});
 
@@ -47,14 +47,9 @@ class PokemonFilter extends Component {
 }
 
 PokemonFilter.STATE = {
-	listPokemons : {
+	originalPokemonList : {
 		validator: core.isArray,
 		value: []
-	},
-
-	filter: {
-		validator: core.isString,
-		value: ''
 	},
 
 	updatePokemons: {
