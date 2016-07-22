@@ -38,9 +38,11 @@ class PokemonFilter extends Component {
 	}
 
 	filterPokemon(name) {
-		var pokemons = this.originalPokemonList.filter(pokemon => {
-			return pokemon.name.toLowerCase().indexOf(name.toLowerCase()) !== -1;
-		});
+		var pokemons = this.originalPokemonList.filter(
+			pokemon => {
+				return pokemon.name.toLowerCase().indexOf(name.toLowerCase()) !== -1;
+			}
+		);
 
 		this.updatePokemons(pokemons);
 	}

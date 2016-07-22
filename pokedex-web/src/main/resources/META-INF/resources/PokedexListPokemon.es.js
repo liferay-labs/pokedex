@@ -22,13 +22,6 @@ class PokedexListPokemon extends Component {
 	}
 }
 
-PokedexListPokemon.STATE = {
-	action: {
-		// The default value will be: `true`.
-		value: 'list'
-	}
-};
-
 
 // Register component
 Soy.register(PokedexListPokemon, templates);
