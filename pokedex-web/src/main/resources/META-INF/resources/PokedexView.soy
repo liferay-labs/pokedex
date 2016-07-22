@@ -6,8 +6,9 @@
  * @param? addPokemonURL
  * @param id
  * @param pokemons
+ * @param listPokemons
  * @param pathThemeImages
- * @param? filter
+ * @param? updatePokemons
  */
 {template .render}
 	<div class="container-fluid-1280" id="{$id}">
@@ -17,11 +18,11 @@
 			</div>
 		</div>
 
-		<div class="row">
-			<div class="col-md-3 text-center">
-				<input id="input-search" class="field form-control lfr-input-text" placeholder="Search" data-onkeyup="{$filter}">
-			</div>
-		</div>
+		{call PokemonFilter.render}
+			{param key: $id + 'Filter' /}
+			{param updatePokemons: $updatePokemons /}
+			{param listPokemons: $listPokemons /}
+		{/call}
 
 		<div class="pokemon_list row">
 			{if length($pokemons) > 0}

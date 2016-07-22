@@ -6,6 +6,7 @@ import Dropdown from 'metal-dropdown/src/Dropdown';
 
 import templates from './PokedexAddPokemon.soy';
 import pokemonViewTemplates from './PokemonListItem.soy';
+import PokemonFilter from './PokemonFilter.es';
 
 class PokedexAddPokemon extends Component {
 	/**
@@ -24,19 +25,27 @@ class PokedexAddPokemon extends Component {
 		var instance = this;
 
 		Ajax.request(
-			this.getPokemonsURL, 
+			this.getPokemonsURL,
 			'GET'
 		)
 		.then(
 			function(response) {
 				instance.pokemons = JSON.parse(response.response);
+				instance.listPokemons = JSON.parse(response.response);
 			}
 		);
+	}
+
+	updatePokemons(pokemons) {
+		this.pokemons = pokemons;
 	}
 }
 
 PokedexAddPokemon.STATE = {
 	pokemons: {
+		value: []
+	},
+	listPokemons: {
 		value: []
 	}
 };

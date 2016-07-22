@@ -1,0 +1,15 @@
+{namespace PokemonFilter}
+
+/**
+ * Prints the Filter portlet view page.
+ *
+ * @param? filterOnClick
+ * @param key
+ */
+{template .render}
+	<div class="row" id="{$key}">
+		<div class="col-md-3 text-center">
+			<input id="input-search" class="field form-control lfr-input-text" placeholder="Search" data-onkeyup="{$filterOnClick}">
+		</div>
+	</div>
+{/template}

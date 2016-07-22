@@ -6,9 +6,10 @@
  * @param pathThemeImages
  * @param backURL
  * @param id
- * @param? filter
  * @param? getPokemons
  * @param portletNamespace
+ * @param updatePokemons
+ * @param listPokemons
  */
 {template .render}
 	<div class="container-fluid-1280" id="{$id}">
@@ -18,11 +19,11 @@
 			</div>
 		</div>
 
-		<div class="row">
-			<div class="col-md-3 text-center">
-				<input class="field form-control lfr-input-text" placeholder="Search" data-onkeyup="{$filter}">
-			</div>
-		</div>
+		{call PokemonFilter.render}
+			{param key: $id + 'Filter' /}
+			{param updatePokemons: $updatePokemons /}
+			{param listPokemons: $listPokemons /}
+		{/call}
 
 		<div class="pokemon_list row">
 			{if $pokemons and length($pokemons) > 0}
