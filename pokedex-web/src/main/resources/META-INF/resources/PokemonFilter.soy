@@ -4,7 +4,7 @@
  * Prints the Filter portlet view page.
  *
  * @param? enabled
- * @param? filterOnClick
+ * @param? filterOnKeyup
  * @param key
  */
 {template .render}
@@ -13,13 +13,12 @@
 			{let $inputAttributes kind="attributes"}
 				id="input-search"
 				class="field form-control lfr-input-text"
-				data-onkeyup="{$filterOnClick}"
+				data-onkeyup="{$filterOnKeyup}"
 				placeholder="Search"
 				{if $enabled}
 					disabled="disabled"
 				{/if}
 			{/let}
-
 			<input {$inputAttributes}>
 		</div>
 	</div>

@@ -31,7 +31,7 @@ class PokemonFilter extends Component {
 		);
 	}
 
-	filterOnClick(event) {
+	filterOnKeyup(event) {
 		var name = event.target.value;
 
 		this.filterPokemon(name);
