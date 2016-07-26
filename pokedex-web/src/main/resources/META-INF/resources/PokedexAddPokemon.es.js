@@ -30,17 +30,17 @@ class PokedexAddPokemon extends Component {
 	getPokemons() {
 		this.loading = true;
 
-		let body = new MultiMap();
+		let opt_params = new MultiMap();
 
-		body.add(this.portletNamespace + 'start', this.start);
-		body.add(this.portletNamespace + 'end', this.end);
+		opt_params.add(this.portletNamespace + 'start', this.start);
+		opt_params.add(this.portletNamespace + 'end', this.end);
 
 		Ajax.request(
 			this.getPokemonsURL,
 			'GET',
 			null,
 			null,
-			body
+			opt_params
 		)
 		.then((response) => {
 			this.pokemons = this.pokemons.concat(JSON.parse(response.response));
