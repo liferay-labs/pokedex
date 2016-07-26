@@ -72,7 +72,7 @@ public class GetPokemonsMVCResourceCommand extends BaseMVCResourceCommand {
 		JSONObject pokemonJSON = JSONFactoryUtil.createJSONObject();
 
 		pokemonJSON.put("name", pokemon.getName());
-		pokemonJSON.put("order", pokemon.getOrder());
+		pokemonJSON.put("order", pokemon.getId());
 		pokemonJSON.put("description", "");
 
 		String type = pokemon.getTypes().get(0).getType().getName();
