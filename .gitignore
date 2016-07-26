@@ -12,6 +12,7 @@
 /*/docroot/WEB-INF/lib
 /*/javadoc
 /*/lib
+/*/node_modules
 /*/pmd-reports
 /*/test-classes
 /*/test-coverage
@@ -35,5 +36,4 @@
 /tools/*/classes
 /tools/*/lib
 sonar.*.properties
-node_modules
 .task-cache/
