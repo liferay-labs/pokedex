@@ -1,7 +1,15 @@
 @import "bourbon";
 
 .pokedex-portlet {
+	.autocomplete-pokemon {
+		position: absolute;
+	}
+
 	.pokemon {
+		.name {
+			text-transform: capitalize;
+		}
+
 		.type-bug {
 			color: #A8B820;
 		}
@@ -66,8 +74,4 @@
 	.row {
 		margin-bottom: 15px;
 	}
-}
-
-.autocomplete-pokemon {
-	position: absolute;
 }
