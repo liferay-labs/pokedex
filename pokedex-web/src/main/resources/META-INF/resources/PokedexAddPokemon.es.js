@@ -28,7 +28,7 @@ class PokedexAddPokemon extends Component {
 	}
 
 	getPokemons() {
-		var instance = this;
+		this.loading = true;
 
 		let body = new MultiMap();
 
@@ -42,15 +42,15 @@ class PokedexAddPokemon extends Component {
 			null,
 			body
 		)
-		.then(
-			function(response) {
-				instance.pokemons = instance.pokemons.concat(JSON.parse(response.response));
-				instance.originalPokemonList = instance.originalPokemonList.concat(JSON.parse(response.response));
+		.then((response) => {
+			this.pokemons = this.pokemons.concat(JSON.parse(response.response));
+			this.originalPokemonList = this.originalPokemonList.concat(JSON.parse(response.response));
 
-				instance.start += 8;
-				instance.end += 8;
-			}
-		);
+			this.start += 8;
+			this.end += 8;
+
+			this.loading = false;
+		});
 	}
 
 	updatePokemons(pokemons) {
@@ -59,6 +59,10 @@ class PokedexAddPokemon extends Component {
 }
 
 PokedexAddPokemon.STATE = {
+	loading: {
+		value: false
+	},
+
 	pokemons: {
 		value: []
 	}

@@ -10,6 +10,7 @@
  * @param portletNamespace
  * @param updatePokemons
  * @param originalPokemonList
+ * @param? loading
  */
 {template .render}
 	<div class="container-fluid-1280" id="{$id}">
@@ -20,6 +21,7 @@
 		</div>
 
 		{call PokemonFilter.render}
+			{param enabled: $loading /}
 			{param key: $id + 'Filter' /}
 			{param updatePokemons: $updatePokemons /}
 			{param originalPokemonList: $originalPokemonList /}
@@ -49,10 +51,30 @@
 					</form>
 				{/foreach}
 			{/if}
+
 		</div>
 
-		<button class="btn btn-default" onclick="{$getPokemons}">View more</button>
+		<div class="row">
+			{if $loading}
+				<div class="loading-animation"></div>
+			{/if}
+		</div>
 
-		<a href="{$backURL}">Back to POKÉDEX©</a>
+		<div class="row">
+			<div class="col-md-6">
+				{let $viewMoreButtonAttributes kind="attributes" }
+					class="btn btn-default {$loading ? 'disabled' : ''}"
+					onclick="{$getPokemons}"
+					{if $loading}
+						disabled="disabled"
+					{/if}
+				{/let}
+				<button {$viewMoreButtonAttributes}>View more</button>
+			</div>
+
+			<div class="col-md-6 text-right">
+				<a class="btn btn-default" href="{$backURL}">Back to your POKÉDEX©</a>
+			</div>
+		</div>
 	</div>
 {/template}

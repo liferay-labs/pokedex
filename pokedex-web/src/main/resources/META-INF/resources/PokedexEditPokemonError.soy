@@ -4,19 +4,27 @@
  * Prints the Pokedex portlet page to add/edit a Pokemon.
  *
  * @param backURL
+ * @param id
  */
 {template .render}
-	<div class="container-fluid-1280 text-center">
-		<div class="card main-content-card taglib-empty-result-message">
-			<div class="taglib-empty-result-message-header"></div>
+	<div id="{$id}">
+		<div class="container-fluid-1280 text-center">
+			<div class="card main-content-card taglib-empty-result-message">
+				<div class="taglib-empty-result-message-header"></div>
 
-			<div class="card-row card-row-padded">
-				<div class="text-center text-muted">
-					The pokemon can't be found
+				<div class="card-row card-row-padded">
+					<div class="text-center text-muted">
+						The pokemon can't be found
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-md-12 text-right">
+					<a class="btn btn-default" href="{$backURL}">Back to your POKÉDEX©.</a>
 				</div>
 			</div>
 		</div>
-
-		<a href="{$backURL}">Back to your POKÉDEX©.</a>
 	</div>
 {/template}
