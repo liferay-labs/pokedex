@@ -9,16 +9,14 @@ import templates from './PokemonFilter.soy';
 
 class PokemonFilter extends Component {
 	attached() {
-		var instance = this;
-
 		var inputSearch = document.getElementById('input-search');
 
 		new Autocomplete(
 			{
 				elementClasses: 'autocomplete-pokemon',
 				inputElement: inputSearch,
-				data: function(query) {
-					return instance.originalPokemonList.filter(function(item) {
+				data: query => {
+					return this.originalPokemonList.filter(function(item) {
 						item.textPrimary = item.name;
 						return query && item.name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
 					});
