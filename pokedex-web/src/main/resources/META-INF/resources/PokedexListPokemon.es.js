@@ -16,13 +16,23 @@ class PokedexListPokemon extends Component {
 		super(opt_config);
 	}
 
-	updatePokemons(pokemons) {
-		this.pokemons = pokemons;
+	filterOnKeyup(event) {
+		this.pokemons = this.originalPokemonList.filter(
+			pokemon => {
+				return pokemon.name.toLowerCase().indexOf(event.target.value.toLowerCase()) !== -1;
+			}
+		);
 	}
 
 	/*TODO FILTERCOMPONENT
 		HIERARCHIC DATA SAMPLE
 	*/
+}
+
+PokedexListPokemon.STATE = {
+	originalPokemonList: {
+		value: []
+	}
 }
 
 // Register component

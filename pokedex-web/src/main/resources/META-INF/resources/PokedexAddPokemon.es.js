@@ -24,6 +24,14 @@ class PokedexAddPokemon extends Component {
 		this.getPokemons();
 	}
 
+	filterOnKeyup(event) {
+		this.pokemons = this.originalPokemonList.filter(
+			pokemon => {
+				return pokemon.name.toLowerCase().indexOf(event.target.value.toLowerCase()) !== -1;
+			}
+		);
+	}
+
 	getPokemons() {
 		this.loading = true;
 
@@ -58,6 +66,10 @@ PokedexAddPokemon.STATE = {
 	},
 
 	pokemons: {
+		value: []
+	},
+
+	originalPokemonList: {
 		value: []
 	}
 };

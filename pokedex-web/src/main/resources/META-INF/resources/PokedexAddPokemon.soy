@@ -9,6 +9,7 @@
  * @param pathThemeImages
  * @param pokemons
  * @param portletNamespace
+ * @param? filterOnKeyup
  */
 {template .render}
 	<div class="container-fluid-1280" id="{$id}">
@@ -18,9 +19,21 @@
 			</div>
 		</div>
 
-		/*
-			CALL POKEMONFILTER
-		*/
+		<div class="row">
+			<div class="col-md-3 text-center">
+				{let $inputAttributes kind="attributes"}
+					id="input-search"
+					class="field form-control lfr-input-text"
+					data-onkeyup="{$filterOnKeyup}"
+					placeholder="Search"
+					{if $loading}
+						disabled="disabled"
+					{/if}
+				{/let}
+				<input {$inputAttributes}>
+			</div>
+		</div>
+
 		<div class="pokemon_list row">
 			{if $pokemons and length($pokemons) > 0}
 				{foreach $pokemon in $pokemons}
@@ -29,7 +42,7 @@
 							{param pokemon: $pokemon /}
 							{param pathThemeImages: $pathThemeImages /}
 							{param menu kind="html"}
-								<li data-onclick="toggle">
+								<li>
 									<input class="btn btn-link" type="submit" value="Catch!"></input>
 								</li>
 							{/param}
