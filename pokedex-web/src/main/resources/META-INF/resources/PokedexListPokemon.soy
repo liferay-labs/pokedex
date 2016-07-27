@@ -5,10 +5,8 @@
  *
  * @param? addPokemonURL
  * @param id
- * @param originalPokemonList
  * @param pathThemeImages
  * @param pokemons
- * @param? updatePokemons
  */
 {template .render}
 	<div class="container-fluid-1280" id="{$id}">
@@ -18,11 +16,9 @@
 			</div>
 		</div>
 
-		{call PokemonFilter.render}
-			{param key: $id + 'Filter' /}
-			{param updatePokemons: $updatePokemons /}
-			{param originalPokemonList: $originalPokemonList /}
-		{/call}
+		/*
+			CALL POKEMONFILTER
+		*/
 
 		<div class="pokemon_list row">
 			{if length($pokemons) > 0}

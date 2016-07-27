@@ -7,7 +7,6 @@ import MultiMap from 'metal-multimap/src/MultiMap';
 
 import templates from './PokedexAddPokemon.soy';
 import pokemonViewTemplates from './PokemonListItem.soy';
-import PokemonFilter from './PokemonFilter.es';
 
 class PokedexAddPokemon extends Component {
 	/**
@@ -51,9 +50,6 @@ class PokedexAddPokemon extends Component {
 		});
 	}
 
-	updatePokemons(pokemons) {
-		this.pokemons = pokemons;
-	}
 }
 
 PokedexAddPokemon.STATE = {

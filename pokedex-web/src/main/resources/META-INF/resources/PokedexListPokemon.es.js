@@ -6,7 +6,7 @@ import Tooltip from 'metal-tooltip/src/Tooltip';
 
 import templates from './PokedexListPokemon.soy';
 import pokemonViewTemplates from './PokemonListItem.soy';
-import PokemonFilter from './PokemonFilter.es';
+//TODO FILTERCOMPONENT IMPORT
 
 class PokedexListPokemon extends Component {
 	/**
@@ -19,6 +19,10 @@ class PokedexListPokemon extends Component {
 	updatePokemons(pokemons) {
 		this.pokemons = pokemons;
 	}
+
+	/*TODO FILTERCOMPONENT
+		HIERARCHIC DATA SAMPLE
+	*/
 }
 
 // Register component

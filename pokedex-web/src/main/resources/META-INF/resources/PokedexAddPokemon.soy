@@ -6,11 +6,9 @@
  * @param? getPokemons
  * @param id
  * @param? loading
- * @param originalPokemonList
  * @param pathThemeImages
  * @param pokemons
  * @param portletNamespace
- * @param updatePokemons
  */
 {template .render}
 	<div class="container-fluid-1280" id="{$id}">
@@ -20,13 +18,9 @@
 			</div>
 		</div>
 
-		{call PokemonFilter.render}
-			{param enabled: $loading /}
-			{param key: $id + 'Filter' /}
-			{param updatePokemons: $updatePokemons /}
-			{param originalPokemonList: $originalPokemonList /}
-		{/call}
-
+		/*
+			CALL POKEMONFILTER
+		*/
 		<div class="pokemon_list row">
 			{if $pokemons and length($pokemons) > 0}
 				{foreach $pokemon in $pokemons}

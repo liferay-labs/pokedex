@@ -3,23 +3,6 @@
 /**
  * Prints the Filter portlet view page.
  *
- * @param? enabled
- * @param? filterOnKeyup
- * @param key
  */
 {template .render}
-	<div class="row" id="{$key}">
-		<div class="col-md-3 text-center">
-			{let $inputAttributes kind="attributes"}
-				id="input-search"
-				class="field form-control lfr-input-text"
-				data-onkeyup="{$filterOnKeyup}"
-				placeholder="Search"
-				{if $enabled}
-					disabled="disabled"
-				{/if}
-			{/let}
-			<input {$inputAttributes}>
-		</div>
-	</div>
 {/template}
