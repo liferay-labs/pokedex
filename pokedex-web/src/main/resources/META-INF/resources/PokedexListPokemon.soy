@@ -27,17 +27,8 @@
 		<div class="pokemon_list row">
 			{if length($pokemons) > 0}
 				{foreach $pokemon in $pokemons}
-					{call PokemonListItem.render}
+					{call .pokemon data="all"}
 						{param pokemon: $pokemon /}
-						{param pathThemeImages: $pathThemeImages /}
-						{param menu kind="html"}
-							<li data-onclick="toggle">
-								<a href="{$pokemon.editPokemonURL}">Edit</a>
-							</li>
-							<li data-onclick="toggle">
-								<a href="{$pokemon.deletePokemonURL}">Transfer</a>
-							</li>
-						{/param}
 					{/call}
 				{/foreach}
 			{else}
@@ -62,5 +53,25 @@
 		{param elementClasses: 'fade' /}
 		{param selector: '[data-title]' /}
 		{param visible: false /}
+	{/call}
+{/template}
+
+/**
+*
+* @param pokemon
+* @param pathThemeImages
+*/
+{template .pokemon}
+	{call PokemonListItem.render}
+		{param pokemon: $pokemon /}
+		{param pathThemeImages: $pathThemeImages /}
+		{param menu kind="html"}
+			<li data-onclick="toggle">
+				<a href="{$pokemon.editPokemonURL}">Edit</a>
+			</li>
+			<li data-onclick="toggle">
+				<a href="{$pokemon.deletePokemonURL}">Transfer</a>
+			</li>
+		{/param}
 	{/call}
 {/template}
