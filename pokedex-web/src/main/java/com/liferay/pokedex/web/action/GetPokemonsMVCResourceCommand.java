@@ -26,12 +26,16 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
+import me.sargunvohra.lib.pokekotlin.client.ClientConfig;
 import me.sargunvohra.lib.pokekotlin.client.PokeApi;
 import me.sargunvohra.lib.pokekotlin.client.PokeApiClient;
 import me.sargunvohra.lib.pokekotlin.model.Pokemon;
 import me.sargunvohra.lib.pokekotlin.model.PokemonSprites;
 
+import okhttp3.HttpUrl;
 import org.osgi.service.component.annotations.Component;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Julio Camarero
@@ -56,7 +60,13 @@ public class GetPokemonsMVCResourceCommand extends BaseMVCResourceCommand {
 		int start = ParamUtil.getInteger(resourceRequest, "start", 0);
 		int end = ParamUtil.getInteger(resourceRequest, "end", 8);
 
-		PokeApi pokeApi = new PokeApiClient();
+		ClientConfig clientConfig = new ClientConfig(
+			HttpUrl.parse("https://localhost:8000/api/v2/"),
+			b -> b.connectTimeout(30, TimeUnit.SECONDS)
+				  .readTimeout(30, TimeUnit.SECONDS)
+				  .writeTimeout(30, TimeUnit.SECONDS));
+
+		PokeApi pokeApi = new PokeApiClient(clientConfig);
 
 		for (int i = start; i < end; i++) {
 			Pokemon pokemon = pokeApi.getPokemon(i + 1);

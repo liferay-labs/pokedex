@@ -1,5 +1,8 @@
 apply plugin: "com.liferay.cache"
 
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
 cache {
 	task(classes) {
 		baseDir = "classes/META-INF"
