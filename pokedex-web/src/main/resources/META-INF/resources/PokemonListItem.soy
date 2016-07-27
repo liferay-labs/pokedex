@@ -9,6 +9,14 @@
 {template .render}
 	{@param menu: html}
 
+	{let $header kind="html"}
+		<a class="icon-monospaced" data-onclick="toggle" href="javascript:;">
+			<svg class="lexicon-icon">
+			    <use xlink:href="{$pathThemeImages}/lexicon/icons.svg#ellipsis-v"></use>
+			</svg>
+		</a>
+	{/let}
+
 	<div class="col-md-3">
 		<div class="card card-horizontal pokemon">
 			<div class="card-row">
@@ -26,23 +34,8 @@
 				</div>
 
 				<div class="card-col-field">
-					{call Dropdown.render}
-						{param header kind="html"}
-							<a class="icon-monospaced" data-onclick="toggle" href="javascript:;">
-								<svg class="lexicon-icon">
-								    <use xlink:href="{$pathThemeImages}/lexicon/icons.svg#ellipsis-v"></use>
-								</svg>
-							</a>
-						{/param}
-
-						{param body kind="html"}
-							{$menu}
-						{/param}
-
-						{param elementClasses: 'dropdown' /}
-						{param position: 0 /}
-						{param positionClassOnMenu: true /}
-					{/call}
+					{$header}
+					{$menu}
 				</div>
 			</div>
 		</div>
