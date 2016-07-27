@@ -1,0 +1,23 @@
+{namespace PokedexEditPokemon}
+
+/**
+ * @param pokemon
+ * @param actionURL
+ * @param backURL
+ * @param portletNamespace
+ */
+{template .render}
+	<h1>{$pokemon.name}</h1>
+
+	<img src="{$pokemon.frontImageURL}" />
+	<img src="{$pokemon.backImageURL}" />
+
+	<form action="{$actionURL}" name="fm1" method="post">
+	    <input type="hidden" name="{$portletNamespace}id" value="{$pokemon.id}" />
+	    <input type="text" name="{$portletNamespace}customName" value="{$pokemon.name}" />
+
+		<input type="submit" />
+	</form>
+
+	<a href="{$backURL}">back</a>
+{/template}
