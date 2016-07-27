@@ -67,6 +67,8 @@ public class AddPokemonMVCRenderCommand implements MVCRenderCommand {
 
 		template.put("pokemons", new ArrayList());
 
+		template.put("originalPokemonList", new ArrayList());
+
 		return PATH;
 	}
 

@@ -71,6 +71,8 @@ public class ListPokemonMVCRenderCommand implements MVCRenderCommand {
 
 		template.put("pokemons", toSoyData(pokemons, renderResponse));
 
+		template.put("originalPokemonList", toSoyData(pokemons, renderResponse));
+
 		return PATH;
 	}
 

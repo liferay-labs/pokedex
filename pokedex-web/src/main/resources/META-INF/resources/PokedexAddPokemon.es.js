@@ -14,8 +14,6 @@ class PokedexAddPokemon extends Component {
 	 * @inheritDoc
 	 */
 	constructor(opt_config) {
-		opt_config.originalPokemonList = opt_config.pokemons.slice();
-
 		super(opt_config);
 
 		this.getPokemonsURL = opt_config.getPokemonsURL;

@@ -13,7 +13,6 @@ class PokedexListPokemon extends Component {
 	 * @inheritDoc
 	 */
 	constructor(opt_config) {
-		opt_config.originalPokemonList = opt_config.pokemons.slice();
 		super(opt_config);
 	}
 
@@ -21,7 +20,6 @@ class PokedexListPokemon extends Component {
 		this.pokemons = pokemons;
 	}
 }
-
 
 // Register component
 Soy.register(PokedexListPokemon, templates);
