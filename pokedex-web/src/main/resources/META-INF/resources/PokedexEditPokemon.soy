@@ -9,14 +9,14 @@
 {template .render}
 	<h1>{$pokemon.name}</h1>
 
-	<img src="{$pokemon.frontImageURL}" />
-	<img src="{$pokemon.backImageURL}" />
+	<img src="{$pokemon.frontImageURL}"></img>
+	<img src="{$pokemon.backImageURL}"></img>
 
 	<form action="{$actionURL}" name="fm1" method="post">
-	    <input type="hidden" name="{$portletNamespace}id" value="{$pokemon.id}" />
-	    <input type="text" name="{$portletNamespace}customName" value="{$pokemon.name}" />
+	    <input type="hidden" name="{$portletNamespace}id" value="{$pokemon.id}"></input>
+	    <input type="text" name="{$portletNamespace}customName" value="{$pokemon.name}"></input>
 
-		<input type="submit" />
+		<input type="submit"></input>
 	</form>
 
 	<a href="{$backURL}">back</a>
