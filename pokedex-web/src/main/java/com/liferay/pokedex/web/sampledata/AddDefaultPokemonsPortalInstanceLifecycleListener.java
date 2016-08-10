@@ -14,8 +14,8 @@
 
 package com.liferay.pokedex.web.sampledata;
 
-import com.liferay.pokedex.model.Pokemon;
-import com.liferay.pokedex.service.PokemonLocalService;
+import com.liferay.pokedex.nosql.model.Pokemon;
+import com.liferay.pokedex.nosql.service.PokemonService;
 import com.liferay.pokedex.web.portlet.PokedexPortletKeys;
 import com.liferay.portal.instance.lifecycle.BasePortalInstanceLifecycleListener;
 import com.liferay.portal.instance.lifecycle.PortalInstanceLifecycleListener;
@@ -56,7 +56,7 @@ public class AddDefaultPokemonsPortalInstanceLifecycleListener
 				continue;
 			}
 
-			List<Pokemon> pokemons = _pokemonLocalService.getPokemons(
+			List<Pokemon> pokemons = _pokemonService.getPokemons(
 				user.getGroupId());
 
 			if (!pokemons.isEmpty()) {
@@ -72,7 +72,7 @@ public class AddDefaultPokemonsPortalInstanceLifecycleListener
 
 		serviceContext.setUserId(user.getUserId());
 
-		_pokemonLocalService.addPokemon(
+		_pokemonService.addPokemon(
 			"Pikachu", null,
 			"Pikachu is a short, chubby rodent Pokémon. It is covered in yell" +
 				"ow fur, and its ears are long and pointed with black tips.",
@@ -82,7 +82,7 @@ public class AddDefaultPokemonsPortalInstanceLifecycleListener
 			"http://pokeapi.co/media/sprites/pokemon/back/shiny/25.png",
 			serviceContext);
 
-		_pokemonLocalService.addPokemon(
+		_pokemonService.addPokemon(
 			"Squirtle", null,
 			"Squirtle is a small Pokémon that resembles a light blue turtle." +
 				" While it typically walks on its two short legs, it has been" +
@@ -107,10 +107,9 @@ public class AddDefaultPokemonsPortalInstanceLifecycleListener
 	}
 
 	@Reference(unbind = "-")
-	protected void setPokemonLocalService(
-		PokemonLocalService pokemonLocalService) {
+	protected void setPokemonService(PokemonService pokemonService) {
 
-		_pokemonLocalService = pokemonLocalService;
+		_pokemonService = pokemonService;
 	}
 
 	@Reference(unbind = "-")
@@ -118,7 +117,7 @@ public class AddDefaultPokemonsPortalInstanceLifecycleListener
 		_userLocalService = userLocalService;
 	}
 
-	private PokemonLocalService _pokemonLocalService;
+	private PokemonService _pokemonService;
 	private UserLocalService _userLocalService;
 
 }

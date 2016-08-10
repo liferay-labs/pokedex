@@ -15,6 +15,7 @@
 package com.liferay.pokedex.web.action;
 
 import com.liferay.pokedex.model.Pokemon;
+import com.liferay.pokedex.nosql.service.PokemonService;
 import com.liferay.pokedex.service.PokemonLocalService;
 import com.liferay.pokedex.web.portlet.PokedexPortletKeys;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
@@ -33,7 +34,6 @@ import org.osgi.service.component.annotations.Reference;
  * @author Julio Camarero
  */
 @Component(
-	immediate = true,
 	property = {
 		"javax.portlet.name=" + PokedexPortletKeys.POKEDEX,
 		"mvc.command.name=add_pokemon"
@@ -66,7 +66,7 @@ public class AddPokemonMVCActionCommand extends BaseMVCActionCommand {
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			Pokemon.class.getName(), actionRequest);
 
-		_pokemonLocalService.addPokemon(
+		_pokemonService.addPokemon(
 			originalName, customName, description, type, order, frontImageURL,
 			frontShinyImageURL, backImageURL, backShinyImageURL,
 			serviceContext);
@@ -75,12 +75,10 @@ public class AddPokemonMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	@Reference(unbind = "-")
-	protected void setPokemonLocalService(
-		PokemonLocalService pokemonLocalService) {
-
-		_pokemonLocalService = pokemonLocalService;
+	protected void setPokemonService(PokemonService pokemonService) {
+		_pokemonService = pokemonService;
 	}
 
-	private PokemonLocalService _pokemonLocalService;
+	private PokemonService _pokemonService;
 
 }
