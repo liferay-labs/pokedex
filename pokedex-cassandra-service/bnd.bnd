@@ -1,0 +1,16 @@
+Bundle-Name: Liferay Pokedex Cassandra Service
+Bundle-SymbolicName: com.liferay.pokedex.cassandra.service
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.liferay.pokedex.cassandra.codec,\
+	com.liferay.pokedex.cassandra.model,\
+	com.liferay.pokedex.cassandra.persistence,\
+	com.liferay.pokedex.cassandra.session
+Import-Package:\
+	!com.codahale.*,\
+	!net.jpountz.*,\
+	!org.HdrHistogram,\
+	!org.xerial.*,\
+	*
+Liferay-Releng-Module-Group-Description:
+Liferay-Releng-Module-Group-Title: Pokedex
