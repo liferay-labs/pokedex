@@ -1,7 +1,14 @@
 Bundle-Name: Liferay Pokedex Service
 Bundle-SymbolicName: com.liferay.pokedex.service
 Bundle-Version: 1.0.0
+Export-Package:\
+	com.liferay.pokedex.nosql.model,\
+	com.liferay.pokedex.nosql.service
+Import-Package:\
+	!com.codahale.*,\
+	!net.jpountz.*,\
+	!org.HdrHistogram,\
+	!org.xerial.*,\
+	*
 Liferay-Releng-Module-Group-Description:
 Liferay-Releng-Module-Group-Title: Pokedex
-Liferay-Require-SchemaVersion: 1.0.0
-Liferay-Service: true
