@@ -16,7 +16,7 @@ package com.liferay.pokedex.nosql.service.impl;
 
 import com.liferay.pokedex.nosql.model.PokemonCache;
 import com.liferay.pokedex.nosql.service.PokemonCacheService;
-import com.liferay.pokedex.nosql.service.presistence.PokemonCachePersistence;
+import com.liferay.pokedex.nosql.service.persistence.PokemonCachePersistence;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
 import org.osgi.service.component.annotations.Component;

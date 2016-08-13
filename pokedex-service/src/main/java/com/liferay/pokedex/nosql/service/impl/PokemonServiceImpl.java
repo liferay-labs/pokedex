@@ -17,7 +17,7 @@ package com.liferay.pokedex.nosql.service.impl;
 import com.liferay.counter.kernel.service.CounterLocalService;
 import com.liferay.pokedex.nosql.model.Pokemon;
 import com.liferay.pokedex.nosql.service.PokemonService;
-import com.liferay.pokedex.nosql.service.presistence.PokemonPersistence;
+import com.liferay.pokedex.nosql.service.persistence.PokemonPersistence;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalService;
