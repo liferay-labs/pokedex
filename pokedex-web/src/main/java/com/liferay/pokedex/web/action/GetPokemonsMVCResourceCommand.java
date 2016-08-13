@@ -14,8 +14,6 @@
 
 package com.liferay.pokedex.web.action;
 
-import com.liferay.pokedex.nosql.model.PokemonCache;
-import com.liferay.pokedex.nosql.service.PokemonCacheService;
 import com.liferay.pokedex.web.portlet.PokedexPortletKeys;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -34,9 +32,6 @@ import me.sargunvohra.lib.pokekotlin.model.Pokemon;
 import me.sargunvohra.lib.pokekotlin.model.PokemonSprites;
 
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
-
-import java.util.Date;
 
 /**
  * @author Julio Camarero
@@ -61,36 +56,16 @@ public class GetPokemonsMVCResourceCommand extends BaseMVCResourceCommand {
 		int start = ParamUtil.getInteger(resourceRequest, "start", 0);
 		int end = ParamUtil.getInteger(resourceRequest, "end", 8);
 
-		PokemonCache pokemonCache =
-			_pokemonCacheService.fetchNearestPokemonCache(
-				new Date(), start, end);
+		PokeApi pokeApi = new PokeApiClient();
 
-		if (pokemonCache != null) {
-			for (JSONObject pokemonObject : pokemonCache.getPokemons()) {
-				pokemons.put(pokemonObject);
-			}
-		}
-		else {
-			PokeApi pokeApi = new PokeApiClient();
+		for (int i = start; i < end; i++) {
+			Pokemon pokemon = pokeApi.getPokemon(i + 1);
 
-			for (int i = start; i < end; i++) {
-				Pokemon pokemon = pokeApi.getPokemon(i + 1);
-
-				pokemons.put(toJSONPokemon(pokemon));
-			}
-
-			_pokemonCacheService.addPokemonCache(pokemons, start, end);
+			pokemons.put(toJSONPokemon(pokemon));
 		}
 
 		JSONPortletResponseUtil.writeJSON(
 			resourceRequest, resourceResponse, pokemons);
-	}
-
-	@Reference(unbind = "-")
-	protected void setPokemonCacheService(
-		PokemonCacheService pokemonCacheService) {
-
-		_pokemonCacheService = pokemonCacheService;
 	}
 
 	protected JSONObject toJSONPokemon(Pokemon pokemon) {
@@ -113,7 +88,5 @@ public class GetPokemonsMVCResourceCommand extends BaseMVCResourceCommand {
 
 		return pokemonJSON;
 	}
-
-	private PokemonCacheService _pokemonCacheService;
 
 }

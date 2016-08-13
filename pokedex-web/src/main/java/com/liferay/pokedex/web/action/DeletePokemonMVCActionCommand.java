@@ -15,7 +15,7 @@
 package com.liferay.pokedex.web.action;
 
 import com.liferay.pokedex.model.Pokemon;
-import com.liferay.pokedex.nosql.service.PokemonService;
+import com.liferay.pokedex.service.PokemonLocalService;
 import com.liferay.pokedex.web.portlet.PokedexPortletKeys;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
@@ -33,6 +33,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Julio Camarero
  */
 @Component(
+	immediate = true,
 	property = {
 		"javax.portlet.name=" + PokedexPortletKeys.POKEDEX,
 		"mvc.command.name=delete_pokemon"
@@ -48,16 +49,21 @@ public class DeletePokemonMVCActionCommand extends BaseMVCActionCommand {
 
 		long id = ParamUtil.getLong(actionRequest, "id");
 
-		_pokemonService.deletePokemon(id);
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			Pokemon.class.getName(), actionRequest);
+
+		_pokemonLocalService.deletePokemon(id, serviceContext);
 
 		sendRedirect(actionRequest, actionResponse);
 	}
 
 	@Reference(unbind = "-")
-	protected void setPokemonService(PokemonService pokemonService) {
-		_pokemonService = pokemonService;
+	protected void setPokemonLocalService(
+		PokemonLocalService pokemonLocalService) {
+
+		_pokemonLocalService = pokemonLocalService;
 	}
 
-	private PokemonService _pokemonService;
+	private PokemonLocalService _pokemonLocalService;
 
 }

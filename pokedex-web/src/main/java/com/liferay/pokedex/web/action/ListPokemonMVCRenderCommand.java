@@ -14,8 +14,8 @@
 
 package com.liferay.pokedex.web.action;
 
-import com.liferay.pokedex.nosql.model.Pokemon;
-import com.liferay.pokedex.nosql.service.PokemonService;
+import com.liferay.pokedex.model.Pokemon;
+import com.liferay.pokedex.service.PokemonLocalService;
 import com.liferay.pokedex.web.portlet.PokedexPortletKeys;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
@@ -40,6 +40,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Julio Camarero
  */
 @Component(
+	immediate = true,
 	property = {
 		"javax.portlet.name=" + PokedexPortletKeys.POKEDEX, "mvc.command.name=/"
 	},
@@ -65,7 +66,8 @@ public class ListPokemonMVCRenderCommand implements MVCRenderCommand {
 
 		User user = themeDisplay.getUser();
 
-		List<Pokemon> pokemons = _pokemonService.getPokemons(user.getGroupId());
+		List<Pokemon> pokemons = _pokemonLocalService.getPokemons(
+			user.getGroupId());
 
 		template.put("pokemons", toSoyData(pokemons, renderResponse));
 
@@ -88,7 +90,7 @@ public class ListPokemonMVCRenderCommand implements MVCRenderCommand {
 		PortletURL portletURL = renderResponse.createActionURL();
 
 		portletURL.setParameter(ActionRequest.ACTION_NAME, "delete_pokemon");
-		portletURL.setParameter("id", String.valueOf(pokemon.getPokemonId()));
+		portletURL.setParameter("id", String.valueOf(pokemon.getId()));
 
 		return portletURL.toString();
 	}
@@ -99,14 +101,16 @@ public class ListPokemonMVCRenderCommand implements MVCRenderCommand {
 		PortletURL portletURL = renderResponse.createRenderURL();
 
 		portletURL.setParameter("mvcRenderCommandName", "edit_pokemon");
-		portletURL.setParameter("id", String.valueOf(pokemon.getPokemonId()));
+		portletURL.setParameter("id", String.valueOf(pokemon.getId()));
 
 		return portletURL.toString();
 	}
 
 	@Reference(unbind = "-")
-	protected void setPokemonService(PokemonService pokemonService) {
-		_pokemonService = pokemonService;
+	protected void setPokemonLocalService(
+		PokemonLocalService pokemonLocalService) {
+
+		_pokemonLocalService = pokemonLocalService;
 	}
 
 	protected List<Map<String, Object>> toSoyData(
@@ -117,7 +121,7 @@ public class ListPokemonMVCRenderCommand implements MVCRenderCommand {
 		for (Pokemon pokemon : pokemons) {
 			Map<String, Object> soyPokemon = new HashMap<>();
 
-			soyPokemon.put("id", pokemon.getPokemonId());
+			soyPokemon.put("id", pokemon.getId());
 			soyPokemon.put("name", pokemon.getName());
 			soyPokemon.put("order", pokemon.getOrder());
 			soyPokemon.put("description", pokemon.getDescription());
@@ -140,6 +144,6 @@ public class ListPokemonMVCRenderCommand implements MVCRenderCommand {
 		return soyPokemons;
 	}
 
-	private PokemonService _pokemonService;
+	private PokemonLocalService _pokemonLocalService;
 
 }

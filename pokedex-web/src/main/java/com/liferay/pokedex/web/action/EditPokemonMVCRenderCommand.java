@@ -14,8 +14,8 @@
 
 package com.liferay.pokedex.web.action;
 
-import com.liferay.pokedex.nosql.model.Pokemon;
-import com.liferay.pokedex.nosql.service.PokemonService;
+import com.liferay.pokedex.model.Pokemon;
+import com.liferay.pokedex.service.PokemonLocalService;
 import com.liferay.pokedex.web.portlet.PokedexPortletKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
@@ -65,11 +65,11 @@ public class EditPokemonMVCRenderCommand implements MVCRenderCommand {
 		long id = ParamUtil.getLong(renderRequest, "id");
 
 		try {
-			Pokemon pokemon = _pokemonService.fetchPokemon(id);
+			Pokemon pokemon = _pokemonLocalService.getPokemon(id);
 
 			template.put("pokemon", toSoyData(pokemon));
 		}
-		catch (Exception pe) {
+		catch (PortalException pe) {
 			return ERROR_PATH;
 		}
 
@@ -96,14 +96,16 @@ public class EditPokemonMVCRenderCommand implements MVCRenderCommand {
 	}
 
 	@Reference(unbind = "-")
-	protected void setPokemonService(PokemonService pokemonService) {
-		_pokemonService = pokemonService;
+	protected void setPokemonLocalService(
+		PokemonLocalService pokemonLocalService) {
+
+		_pokemonLocalService = pokemonLocalService;
 	}
 
 	protected Map<String, Object> toSoyData(Pokemon pokemon) {
 		Map<String, Object> soyPokemon = new HashMap<>();
 
-		soyPokemon.put("id", pokemon.getPokemonId());
+		soyPokemon.put("id", pokemon.getId());
 		soyPokemon.put("name", pokemon.getName());
 		soyPokemon.put("order", pokemon.getOrder());
 		soyPokemon.put("description", pokemon.getDescription());
@@ -116,6 +118,6 @@ public class EditPokemonMVCRenderCommand implements MVCRenderCommand {
 		return soyPokemon;
 	}
 
-	private PokemonService _pokemonService;
+	private PokemonLocalService _pokemonLocalService;
 
 }

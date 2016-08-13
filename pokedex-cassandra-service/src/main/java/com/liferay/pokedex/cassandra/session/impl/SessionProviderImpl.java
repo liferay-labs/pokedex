@@ -15,13 +15,7 @@
 package com.liferay.pokedex.cassandra.session.impl;
 
 import com.datastax.driver.core.Cluster;
-import com.datastax.driver.core.CodecRegistry;
-import com.datastax.driver.core.KeyspaceMetadata;
 import com.datastax.driver.core.Session;
-import com.datastax.driver.core.TypeCodec;
-import com.datastax.driver.core.UserType;
-import com.liferay.pokedex.cassandra.codec.PokemonCodec;
-import com.liferay.pokedex.cassandra.codec.PokemonUserType;
 import com.liferay.pokedex.cassandra.session.SessionProvider;
 import com.liferay.portal.kernel.configuration.Configuration;
 import com.liferay.portal.kernel.configuration.ConfigurationFactoryUtil;
@@ -65,20 +59,6 @@ public class SessionProviderImpl implements SessionProvider {
 		builder.withCredentials(username, password);
 
 		_cluster = builder.build();
-
-		CodecRegistry codecRegistry =
-			_cluster.getConfiguration().getCodecRegistry();
-
-		KeyspaceMetadata keyspaceMetadata =
-			_cluster.getMetadata().getKeyspace(keyspace);
-
-		UserType pokemonUserType =  keyspaceMetadata.getUserType("pokemon");
-
-		PokemonCodec pokemonCodec =
-			new PokemonCodec(
-				TypeCodec.userType(pokemonUserType), PokemonUserType.class);
-
-		codecRegistry.register(pokemonCodec);
 
 		return _cluster;
 	}
