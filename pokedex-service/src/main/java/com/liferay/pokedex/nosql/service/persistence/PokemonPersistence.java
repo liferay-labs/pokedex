@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.pokedex.nosql.service.presistence;
+package com.liferay.pokedex.nosql.service.persistence;
 
 import com.liferay.pokedex.nosql.model.Pokemon;
 

@@ -17,7 +17,6 @@ package com.liferay.pokedex.nosql.service.persistence.impl;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
 import com.datastax.driver.core.Statement;
-import com.datastax.driver.core.UserType;
 import com.datastax.driver.core.querybuilder.Insert;
 import com.datastax.driver.core.querybuilder.QueryBuilder;
 import com.datastax.driver.core.querybuilder.Select;
@@ -25,7 +24,7 @@ import com.liferay.pokedex.cassandra.codec.PokemonUserType;
 import com.liferay.pokedex.cassandra.persistence.BasePersistence;
 import com.liferay.pokedex.cassandra.session.SessionProvider;
 import com.liferay.pokedex.nosql.model.PokemonCache;
-import com.liferay.pokedex.nosql.service.presistence.PokemonCachePersistence;
+import com.liferay.pokedex.nosql.service.persistence.PokemonCachePersistence;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
@@ -36,10 +35,8 @@ import org.osgi.service.component.annotations.Reference;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Pavel Savinov

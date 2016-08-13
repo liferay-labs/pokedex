@@ -24,7 +24,7 @@ import com.datastax.driver.core.querybuilder.Update;
 import com.liferay.pokedex.cassandra.persistence.BasePersistence;
 import com.liferay.pokedex.cassandra.session.SessionProvider;
 import com.liferay.pokedex.nosql.model.Pokemon;
-import com.liferay.pokedex.nosql.service.presistence.PokemonPersistence;
+import com.liferay.pokedex.nosql.service.persistence.PokemonPersistence;
 
 import java.util.ArrayList;
 import java.util.Date;

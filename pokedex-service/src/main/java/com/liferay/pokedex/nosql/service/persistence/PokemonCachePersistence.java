@@ -12,12 +12,11 @@
  * details.
  */
 
-package com.liferay.pokedex.nosql.service.presistence;
+package com.liferay.pokedex.nosql.service.persistence;
 
 import com.liferay.pokedex.nosql.model.PokemonCache;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * @author Pavel Saviov
