@@ -17,6 +17,7 @@ package com.liferay.pokedex.web.action;
 import com.liferay.pokedex.model.Pokemon;
 import com.liferay.pokedex.service.PokemonLocalService;
 import com.liferay.pokedex.web.portlet.PokedexPortletKeys;
+import com.liferay.pokedex.web.rest.PokemonRestUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -66,10 +67,12 @@ public class AddPokemonMVCActionCommand extends BaseMVCActionCommand {
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			Pokemon.class.getName(), actionRequest);
 
-		_pokemonLocalService.addPokemon(
+		Pokemon pokemon = _pokemonLocalService.addPokemon(
 			originalName, customName, description, type, order, frontImageURL,
 			frontShinyImageURL, backImageURL, backShinyImageURL,
 			serviceContext);
+
+		PokemonRestUtil.addPokemon(pokemon);
 
 		sendRedirect(actionRequest, actionResponse);
 	}
